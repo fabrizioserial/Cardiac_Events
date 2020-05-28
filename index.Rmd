@@ -1,0 +1,392 @@
+---
+title: "Informe Eventos Cardiacos"
+output:
+  html_document:
+    css: bootstrap.css
+    theme: flatly
+    highlight: tango
+    fig_width: 5
+    fig_height: 5
+    fig_caption: true
+    toc: true
+    toc_float: true
+
+---
+
+```{r Introduccion, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+<div style="margin-bottom:100px;">
+
+# Introduccion 
+Para poder trabajar de una manera optima con el dataset que se nos fue propocionado, procedimos a buscar informacion y recopilar investigaciones de medicos con experiencia cardiologia. Con una base lista comenzamos a analizar los datos y buscar posibles combinaciones que aporten informacion nueva a lo aportado
+
+
+## Queries 
+
+Para poder definir nuestros Queries, procedimos a averiguar mas acerca de los sintomas que nos podian llegar a informar o predecir un posible evento cardiaco.
+A partir de esta ardua investigacion, procedimos a buscar relacionar esta informacion con los metadatas de nuestro dataset que se nos fue proporcionado.
+Juntando esto pudimos llegar a nuestras primeras queries
+
+1. Metadatas que tienen mas peso en los eventos 
+2.  Diabeticos con hipertension que son obesos y tienen eventos
+3. Antecedentes familiares, con la edad y los eventos
+4. Sme angioso con ubicacion de dolores y tuvieron evento
+5. Porcentaje de sintomas de largo plazo que llevaron a evento
+6. Densidad de eventos por edad en sintomas a largo plazo
+
+
+# Analisis de Datos
+
+## Genero  {.tabset }
+
+Este dato nos parecio muy importante ya que segun el *National institutes of Health*, en especial una investigacion del medico Neth Heart J, indica que estos eventos se darian mas en hombres que en mujeres
+
+### Genero total 
+
+```{r GeneroPorEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(5.5,4)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+Female <-as.numeric( nrow(subset(dataset, dataset$Genero == 0)))
+Male <- as.numeric(nrow(subset(dataset, dataset$Genero == 1)))
+cantTotalGen <- Female + Male
+
+FPercentage <- round((Female * 100) / (Female + Male))
+MPercentage <- round((Male * 100) / (Female + Male))
+par(mar=c(3,0,3,0))
+pie(c(FPercentage,MPercentage),main = "Cardiac Events by Gender", labels = c(paste(FPercentage,"%"),paste(MPercentage,"%")),col = c("#FF9D47","#04BFAD"),cex = 1, radius = 1)
+
+legend(1.2,0.6,c("Female", "Male"),fill = c("#FF9D47","#04BFAD"),cex = 0.8)
+```
+
+### Tuvieron un evento 
+
+```{r GeneroSinEvento, echo=FALSE,message=FALSE,warning=FALSE, fig.dim=c(7,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+Event <- subset(dataset, dataset$Evento == 1, select = c(Genero))
+Female <-as.numeric( nrow(subset(Event, Event$Genero == 0)))
+Male <- as.numeric(nrow(subset(Event, Event$Genero == 1)))
+cantTotalGen <- Female + Male
+
+FPercentage <- round((Female * 100) / (Female + Male))
+MPercentage <- round((Male * 100) / (Female + Male))
+
+pie3D(c(FPercentage,MPercentage),main = "Cardiac Events by Gender", labels = c(paste(FPercentage,"%"),paste(MPercentage,"%")),col = c("#FF9D47","#04BFAD"),labelcex = 1, explode = 0, theta = 1,
+      start = 3, radius = 1, mar = c(5,5,5,5))
+
+legend(.3,1.2,c("Female", "Male"),fill = c("#FF9D47","#04BFAD"))
+```
+
+
+## Edad de quienes tuvieron algun evento cardiaco  {.tabset }
+
+Acerca de la edad de los pacientes que tuvieron algun evento cardiaco, sin tomar en cuenta sus demas problemas de salud, concluimos con que la mayoria de 
+
+### Grafico
+
+El grafico 
+
+```{r EdadPorEvento, fig.dim=c(5, 5),echo=FALSE,message=FALSE,warning=FALSE}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+ageAndEvents <- dataset[,c("Evento", "Edad")]
+attach(ageAndEvents)
+EventoF <- factor(Evento, levels = c(0,1), labels = c("No tuvo evento", "Tuvo evento"))
+histStack(Edad, EventoF, main = "Personas con eventos cardiacos por edad", legend.pos = "topright", 
+          col = c("#038C8C", "#04BFAD"), xlab = "Edad", ylab = "Cantidad de personas", ylim = c(0,150), xlim = c(15,90))
+```
+
+### Tabla { class.source="bg-success"}
+
+En esta tabla podemos notar claramente que la mayoria de los pacientes que sufren un evento pertenecen a la franja de edad de 32 a 80
+
+```{r EdadPorE1vento, echo=FALSE,message=FALSE,warning=FALSE}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+library(kableExtra)
+ageAndEvents <- subset(dataset, dataset$Evento == 1, select = c(Evento,Edad))
+
+
+countJoven <- 0
+countAdulto <- 0
+countViejo <- 0
+
+
+for (val in ageAndEvents$Edad) {
+if(val<31)  countJoven = countJoven+1
+if(val>=31 && val<65) countAdulto = countAdulto +1
+if(val>=65) countViejo = countViejo +1
+}
+
+Etapa <- c("Adulto Joven","Adulto","Adulto Maduro")
+
+EdadTotal <- countJoven+countAdulto+countViejo
+PorcentajeJoven <- round((countJoven*100)/121)
+PorcentajeAdulto <- round((countAdulto*100)/121)
+PorcentajeViejo <- round((countViejo*100)/121)
+
+Porcentaje<- c(PorcentajeJoven ,PorcentajeAdulto ,PorcentajeViejo)
+
+
+tablaDeEdad <- data.frame(Etapa,Porcentaje)
+kableExtra::kable(tablaDeEdad,"html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),full_width = F)
+
+
+```
+
+
+
+## Cantidad de personas obesas que tuvieron eventos cardiacos
+
+
+```{r ObesosPorEvento, echo=FALSE,message=FALSE,warning=FALSE}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+
+
+PersonasObesasConEventosCardiacos <- subset(dataset, dataset$OBES == 1, select = c(Evento,OBES))
+
+
+```
+
+## Sintomas Asociados {.tabset}
+
+### Personas con evento
+```{r SintomasAsociadosConEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+
+SintomasEvento <-as.numeric( nrow(subset(dataset, dataset$SA == 1 & dataset$Evento == 1)))
+SintomasSinEvento <- as.numeric(nrow(subset(dataset, dataset$SA == 0 & dataset$Evento == 1)))
+cantTotalGen <- SintomasEvento + SintomasSinEvento
+
+SAPPercentage <- round((SintomasEvento * 100) / (SintomasEvento + SintomasSinEvento))
+SASINPPercentage <- round((SintomasSinEvento * 100) / (SintomasEvento + SintomasSinEvento))
+par(mar=c(3,0,3,0))
+pie(c(SAPPercentage,SASINPPercentage),main = "Cardiac Events by associated symptoms", labels = c(paste(SAPPercentage,"%"),paste(SASINPPercentage,"%")),col = c("#FF9D47","#04BFAD"),cex = 1, radius = 1)
+
+legend(1.2,0.6,c("With associated symptoms", "Without associated symptoms"),fill = c("#FF9D47","#04BFAD"),cex = 0.8)
+```
+
+
+
+&nbsp;
+
+# Interpretacion
+
+Para esta parte nos encargamos de buscar relaciones interesantes entre los datos que analizamos anteriormente
+
+&nbsp;
+
+## Pacientes fumadores y obesos que tienen evento {.tabset}
+
+### Grafico
+```{r Interpretacion_Fumadores&Obesos, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(5,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(VennDiagram)
+
+
+DiabeticosConEventos = subset(dataset, dataset$DBT==1, select = c(Evento,DBT))
+ObesosConEventos = subset(dataset,dataset$TBQ ==1, select = c(Evento,TBQ))
+EventosDeObesosYDiabeticos = subset(dataset,dataset$DBT ==1 & dataset$OBES==1)
+grid.newpage()
+draw.pairwise.venn(length(DiabeticosConEventos$DBT), 
+                   length(ObesosConEventos$TBQ), 
+                   length(EventosDeObesosYDiabeticos$Evento), 
+                   category = c("Diabetic", "Smokers"), lty = rep("blank", 2), 
+                   fill = c("#FF9D47", "#04BFAD"), alpha = rep(0.5, 2), cat.pos = c(0, 0), 
+                   cat.dist = rep(0.025, 2))
+
+
+```
+
+### Tabla
+
+&nbsp;
+
+## Pacientes con obesidad y diabetes que tuvieron eventos {.tabset}
+
+&nbsp;
+
+### Graficos
+
+```{r Interpretacion_Diabeticos&Obesos, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(5,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(VennDiagram)
+
+
+DiabeticosConEventos = subset(dataset, dataset$DBT==1, select = c(Evento,DBT))
+ObesosConEventos = subset(dataset,dataset$OBES ==1, select = c(Evento,OBES))
+EventosDeObesosYDiabeticos = subset(dataset,dataset$DBT ==1 & dataset$OBES==1)
+grid.newpage()
+draw.pairwise.venn(length(DiabeticosConEventos$DBT), 
+                   length(ObesosConEventos$OBES), 
+                   length(EventosDeObesosYDiabeticos$Evento), 
+                   category = c("Diabeticos", "Obesos"), lty = rep("blank", 2), 
+                   fill = c("#FF9D47", "#04BFAD"), alpha = rep(0.5, 2), cat.pos = c(0, 0), 
+                   cat.dist = rep(0.025, 2))
+
+```
+
+### Con eventos 
+
+```{r Interpretacion_Diabeticos&Obesos&Eventos, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(5,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(VennDiagram)
+
+
+DiabeticosConEventos = subset(dataset, dataset$DBT==1 & dataset$Evento ==1, select = c(Evento,DBT))
+ObesosConEventos = subset(dataset,dataset$OBES ==1 & dataset$Evento == 1, select = c(Evento,OBES))
+EventosDeObesosYDiabeticos = subset(dataset, dataset$Evento ==1 & dataset$DBT ==1 & dataset$OBES==1)
+grid.newpage()
+draw.pairwise.venn(length(DiabeticosConEventos$DBT), 
+                   length(ObesosConEventos$OBES), 
+                   length(EventosDeObesosYDiabeticos$Evento), 
+                   category = c("Diabeticos", "Obesos"), lty = rep("blank", 2), 
+                   fill = c("#FF9D47", "#04BFAD"), alpha = rep(0.5, 2), cat.pos = c(0, 0), 
+                   cat.dist = rep(0.025, 2))
+
+```
+
+&nbsp;
+
+## Relacion entre obesos, diabeticos y antecedentes familiares {.tabset}
+
+&nbsp;
+
+### Grafico
+```{r Interpretacion_HIPTs&Obesos, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(5,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(VennDiagram)
+
+
+Diabeticos = subset(dataset, dataset$DBT==1, select = DBT)
+Obesos = subset(dataset,dataset$OBES ==1, select = OBES)
+AHF = subset(dataset,dataset$AHF==1, select = AHF)
+
+ObesosYDiabeticos = subset(dataset,dataset$DBT ==1 & dataset$OBES==1)
+AhfyObesos = subset(dataset,dataset$AHF ==1 & dataset$OBES==1)
+AhfyDiabeticos = subset(dataset, dataset$AHF ==1 & dataset$DBT==1)
+AhfDiabeticosObesos = subset(dataset,dataset$AHF ==1 &dataset$OBES==1 &dataset$DBT==1)
+
+grid.newpage()
+venn.plot <- draw.triple.venn(
+  area1 = nrow(Diabeticos),
+  area2 = nrow(Obesos),
+  area3 = nrow(AHF),
+  n12 = nrow(ObesosYDiabeticos),
+  n23 = nrow(AhfyObesos),
+  n13 = nrow(AhfyDiabeticos),
+  n123 = nrow(AhfDiabeticosObesos),
+  category = c("Diabetic", "Obese","Family History"),
+  fill = c("skyblue", "pink1", "mediumorchid"),
+  alpha = 0.3,
+  lty = "blank",
+  cex = 1, # cabia q tanto se destruye mi vision
+  cat.cex = 1,
+  #cat.col = c("blue", "red", "green") changes legends color
+);
+grid.draw(venn.plot)
+
+```
+
+&nbsp;
+
+## Cantidad de eventos por duracion {.tabset}
+
+&nbsp;
+
+### Evento por duracion y ubicacion
+
+```{r Interpretacion_cantEventosPorDuracionYUbicacion, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(8,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+ library(ggplot2)
+
+pplStitch <- subset(dataset, dataset$CD==-1&dataset$Evento==1)
+pplOther <- subset(dataset, dataset$CD==0&dataset$Evento==1)
+pplOpressive <- subset(dataset, dataset$CD==1&dataset$Evento==1)
+
+values <- c(nrow(subset(pplStitch,pplStitch$DD==-1)),
+            nrow(subset(pplStitch,pplStitch$DD==0)),
+            nrow(subset(pplStitch,pplStitch$DD==1)),
+            nrow(subset(pplOther,pplOther$DD==-1)),
+            nrow(subset(pplOther,pplOther$DD==0)),
+            nrow(subset(pplOther,pplOther$DD==1)),
+            nrow(subset(pplOpressive,pplOpressive$DD==-1)),
+            nrow(subset(pplOpressive,pplOpressive$DD==0)),
+            nrow(subset(pplOpressive,pplOpressive$DD==1)))
+
+painType <- c(rep("Stitch" , 3) , rep("Other" , 3) , rep("Opressive" , 3))
+duration <- rep(c("Less than a minute" , "More than 20 minutes" , "1 to 20 minutes") , 3)
+
+dataComplete <- data.frame(painType,duration,values)
+ggplot(dataComplete, aes(fill=duration, y=values, x=painType)) + 
+  geom_bar(position="dodge", stat="identity")+
+  xlab("Pain Type")+
+  ylab("Values")+
+  ggtitle("Ammount of event in certeain time by caracteristics")
+
+```
+
+### Eventos por duracion 
+
+```{r Interpretacion_cantEventosPorDuracion, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(8,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+Eventos <- subset(dataset, dataset$Evento == 1)
+
+EventosA <- subset(Eventos, Eventos$DD == -1)
+EventosB <- subset(Eventos, Eventos$DD == 1)
+EventosC <- subset(Eventos, Eventos$DD == 0)
+
+Frequency <- c(nrow(EventosA),nrow(EventosB), nrow(EventosC))
+legends <- c("Menos de 1 minuto","Entre 1 y 20 minutos","Más de 20 minutos")
+par(mar=c(3,8,5,6))
+
+barplot(Frequency, col=rev(heat.colors(length(table(legends)))), legend.text=legends, xlim = c(0,6), main="Cuantity of events by duration of pain", ylab="Cuantity")
+
+```
+
+### Dolor opresivo
+
+```{r Interpretacion_dolorOpresivo, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(8,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+percent <- function(all , percentToCalculate){
+  (percentToCalculate*100)/all
+}
+
+pplOpressive <- subset(dataset,dataset$CD==-1&dataset$Evento==1)
+less1Min <- round(percent(nrow(pplOpressive),nrow(subset(pplOpressive,pplOpressive$DD==-1))))
+mor20Min <- round(percent(nrow(pplOpressive),nrow(subset(pplOpressive,pplOpressive$DD==0))))
+Oneto20 <- round(percent(nrow(pplOpressive),nrow(subset(pplOpressive,pplOpressive$DD==1)))) 
+
+
+
+pie3D(c(less1Min,mor20Min,Oneto20),main = "Duration Of pain until event on opressive type of pain", labels = c(paste("  ",less1Min,"%"),paste(mor20Min,"%"),paste(Oneto20,"%")),col = c("darkgreen","lightblue","red"),labelcex = 1, theta = 1)
+
+legend(0.8,0.8,c("Less than 1 min","More than 20 min"," 1<20 min"),fill = c("darkgreen","lightblue","red"),cex = 0.8)
+
+
+```

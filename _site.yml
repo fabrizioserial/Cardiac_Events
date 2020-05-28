@@ -1,0 +1,19 @@
+name: 'Cardiac Events'
+output_dir: '.'
+navbar:
+  title: "Cardiac events" 
+  type: inverse 
+  left: # Orientación de las pestañas
+    - text: "Home" # Titulo de pestaña
+      href: index.html # Path al archivo de pestaña
+
+output: # Output gobal
+  html_document: # Variables globales
+    css: bootstrap.css
+    theme: flatly
+    highlight: tango
+    fig_width: 5
+    fig_height: 5
+    fig_caption: true
+    toc: true
+    toc_float: true
