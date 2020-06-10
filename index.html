@@ -15,7 +15,7 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -90,33 +90,33 @@ summary {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 60px;
+  padding-top: 45px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
+  padding-top: 50px;
+  margin-top: -50px;
 }
 .dropdown-submenu {
   position: relative;
@@ -352,49 +352,61 @@ div.tocify {
 </div>
 
 
-<div style="margin-bottom:100px;">
-
-<div id="introduccion" class="section level1">
-<h1>Introduccion</h1>
-<p>Para poder trabajar de una manera optima con el dataset que se nos fue propocionado, procedimos a buscar informacion y recopilar investigaciones de medicos con experiencia cardiologia. Con una base lista comenzamos a analizar los datos y buscar posibles combinaciones que aporten informacion nueva a lo aportado</p>
-<div id="queries" class="section level2">
-<h2>Queries</h2>
-<p>Para poder definir nuestros Queries, procedimos a averiguar mas acerca de los sintomas que nos podian llegar a informar o predecir un posible evento cardiaco. A partir de esta ardua investigacion, procedimos a buscar relacionar esta informacion con los metadatas de nuestro dataset que se nos fue proporcionado. Juntando esto pudimos llegar a nuestras primeras queries</p>
-<ol style="list-style-type: decimal">
-<li>Metadatas que tienen mas peso en los eventos</li>
-<li>Diabeticos con hipertension que son obesos y tienen eventos</li>
-<li>Antecedentes familiares, con la edad y los eventos</li>
-<li>Sme angioso con ubicacion de dolores y tuvieron evento</li>
-<li>Porcentaje de sintomas de largo plazo que llevaron a evento</li>
-<li>Densidad de eventos por edad en sintomas a largo plazo</li>
-</ol>
+<div style="margin-bottom:100px;background-color:rgb(15, 15, 15)">
+<div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
+<h2>
+Introduccion
+</h2>
+<p>
+Para poder trabajar de una manera optima con el dataset que se nos fue propocionado, procedimos a buscar informacion y recopilar investigaciones de medicos con experiencia cardiologia. Con una base lista comenzamos a analizar los datos y buscar posibles combinaciones que aporten informacion nueva a lo aportado
+</p>
+</div>
+<div class="alert alert-dismissible alert-warning" style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
+<h1>
+Data analysis
+</h1>
+<h5>
+In this section we decided to find out how the different metadata affect the cardiac event
+</h5>
+</div>
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
+<h2>
+Gender
+</h2>
+<h5>
+This data seemed very important to us since according to the <strong>National institutes of Health</strong>, especially an investigation by the doctor Neth Heart J, indicates that these events would occur more in men than in women
+</h5>
+</div>
+<div style="padding-top: 10px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+<h3 style="margin-top:10px">
+Gender graphic (with and without events)
+</h3>
+<div style="margin-top: 10px; margin-bottom:10px">
+<p><img src="index_files/figure-html/GeneroPorEvento-1.png" width="960" /></p>
+<h5>
+In this graph we can highlight that we have a high density of male patient than female
+</h5
+</div>
+<h3 style="margin-top:20px; margin-bottom:10px">
+Events by gender
+</h3>
+<p><img src="index_files/figure-html/GeneroSinEvento-1.png" width="960" /></p>
 </div>
 </div>
-<div id="analisis-de-datos" class="section level1">
-<h1>Analisis de Datos</h1>
-<div id="genero" class="section level2 tabset">
-<h2>Genero</h2>
-<p>Este dato nos parecio muy importante ya que segun el <em>National institutes of Health</em>, en especial una investigacion del medico Neth Heart J, indica que estos eventos se darian mas en hombres que en mujeres</p>
-<div id="genero-total" class="section level3">
-<h3>Genero total</h3>
-<p><img src="index_files/figure-html/GeneroPorEvento-1.png" width="528" /></p>
-</div>
-<div id="tuvieron-un-evento" class="section level3">
-<h3>Tuvieron un evento</h3>
-<p><img src="index_files/figure-html/GeneroSinEvento-1.png" width="672" /></p>
-</div>
-</div>
-<div id="edad-de-quienes-tuvieron-algun-evento-cardiaco" class="section level2 tabset">
-<h2>Edad de quienes tuvieron algun evento cardiaco</h2>
+<div class="alert alert-dismissible alert-primary">
+<h2>
+Edad de quienes tuvieron algun evento cardiaco
+</h2>
 <p>Acerca de la edad de los pacientes que tuvieron algun evento cardiaco, sin tomar en cuenta sus demas problemas de salud, concluimos con que la mayoria de</p>
-<div id="grafico" class="section level3">
-<h3>Grafico</h3>
-<p>El grafico</p>
-<p><img src="index_files/figure-html/EdadPorEvento-1.png" width="480" /></p>
 </div>
-<div id="tabla" class="section level3" class.source="bg-success">
-<h3>Tabla</h3>
-<p>En esta tabla podemos notar claramente que la mayoria de los pacientes que sufren un evento pertenecen a la franja de edad de 32 a 80</p>
+<div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
+
+
+
+<p><img src="index_files/figure-html/EdadPorEvento-1.png" width="960" /></p>
+<h5>
+With this graphic we can see that the density of the age that had an event are people between 35 and 81 years old
+</h5>
 <table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -434,70 +446,188 @@ Adulto Maduro
 </tbody>
 </table>
 </div>
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
+<h2>
+Sintomas Asociados
+</h2>
 </div>
-<div id="cantidad-de-personas-obesas-que-tuvieron-eventos-cardiacos" class="section level2">
-<h2>Cantidad de personas obesas que tuvieron eventos cardiacos</h2>
-</div>
-<div id="sintomas-asociados" class="section level2 tabset">
-<h2>Sintomas Asociados</h2>
-<div id="personas-con-evento" class="section level3">
-<h3>Personas con evento</h3>
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
 <p><img src="index_files/figure-html/SintomasAsociadosConEvento-1.png" width="960" /></p>
+</div>
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
+<h2>
+Diabetics
+</h2>
+</div>
+<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+<h3 style="margin-top:10px">
+Gender graphic (with and without events)
+</h3>
+<div style="margin-top: 10px; margin-bottom:10px">
+<p><img src="index_files/figure-html/DiabeticosAnalysis-1.png" width="960" /></p>
+<h5>
+In this graph we can highlight that we have a high density of male patient than female
+</h5
+</div>
+</div>
+</div>
+<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+<h3 style="margin-top:10px">
+Gender graphic (with and without events)
+</h3>
+<div style="margin-top: 10px; margin-bottom:10px">
+<p><img src="index_files/figure-html/DiabeticosAnalysisEvent-1.png" width="960" /></p>
+<h5>
+In this graph we can highlight that we have a high density of male patient than female
+</h5
+</div>
+</div>
+</div>
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
+<h2>
+Family history
+</h2>
+</div>
+<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+<h3 style="margin-top:10px">
+Gender graphic (with and without events)
+</h3>
+<div style="margin-top: 10px; margin-bottom:10px">
+<p><img src="index_files/figure-html/AHFAnalysis-1.png" width="960" /></p>
+<h5>
+In this graph we can highlight that we have a high density of male patient than female
+</h5
+</div>
+</div>
+</div>
+<div class="alert alert-dismissible alert-warning" style="margin-top:100px; margin-bottom:10px">
+<h1>
+Interpretacion
+</h1>
+<h5>
+Para esta parte nos encargamos de buscar relaciones interesantes entre los datos que analizamos anteriormente
+</h5>
+</div>
+<div class="alert alert-dismissible alert-primary" style="padding-left: 15px; margin-bottom:10px">
+<h2>
+Intersetion between patient with events
+</h2>
+</div>
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+<p><img src="Mosaico_ver5.png"></p>
+</div>
+<div class="alert alert-dismissible alert-primary" style="padding-left: 15px; margin-bottom:10px; margin-top:60px">
+<h2>
+Eventos by age and gender
+</h2>
+</div>
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+
+
+<p><img src="index_files/figure-html/SintomasAsociadosConEvento2-1.png" width="960" /></p>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Sex
+</th>
+<th style="text-align:right;">
+AgeMean
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:right;">
+62
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:right;">
+65
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:60px">
+<h2>
+Cantidad de eventos por duracion
+</h2>
+</div>
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+<h3 style="margin-top:10px; margin-bottom:10px">
+Evento por duracion y ubicacion
+</h3>
+<p><img src="index_files/figure-html/Interpretacion_cantEventosPorDuracionYUbicacion-1.png" width="960" /></p>
+<h5>
+In the next graph we evaluate the different types pain suffered before the event. For each type of pain we see the ammount of events for different durations of said pain. From this graph we conclude that most of the events are often produced after an opressive type of pain. We can also see that duration of the pain is almost independent of the type, because all types share the same distribution of people with events by its time. Less than a minute is where less people suffers an event, while most people who suffers an event suffers it in more than 20 minutes.
+</h5>
+<h3 style="margin-top:50px; margin-bottom:10px">
+Eventos por duracion
+</h3>
+<p><img src="index_files/figure-html/Interpretacion_cantEventosPorDuracion-1.png" width="768" /></p>
+<h3 style="margin-top:10px; margin-bottom:10px">
+Dolor opresivo
+</h3>
+<p><img src="index_files/figure-html/Interpretacion_dolorOpresivo-1.png" width="768" /></p>
+</div>
 <p> </p>
-</div>
-</div>
-</div>
-<div id="interpretacion" class="section level1">
-<h1>Interpretacion</h1>
-<p>Para esta parte nos encargamos de buscar relaciones interesantes entre los datos que analizamos anteriormente</p>
+<div id="personas-que-tuvieron-mas-de-un-evento" class="section level2 tabset">
+<h2>Personas que tuvieron mas de un evento</h2>
 <p> </p>
-<div id="pacientes-fumadores-y-obesos-que-tienen-evento" class="section level2 tabset">
-<h2>Pacientes fumadores y obesos que tienen evento</h2>
-<div id="grafico-1" class="section level3">
-<h3>Grafico</h3>
-<p><img src="index_files/figure-html/Interpretacion_Fumadores&Obesos-1.png" width="480" /></p>
-</div>
-<div id="tabla-1" class="section level3">
-<h3>Tabla</h3>
-<p> </p>
-</div>
-</div>
-<div id="pacientes-con-obesidad-y-diabetes-que-tuvieron-eventos" class="section level2 tabset">
-<h2>Pacientes con obesidad y diabetes que tuvieron eventos</h2>
-<p> </p>
+<p>This graph shows the percentage of people that suffered from more than one event in relation to various factors. In order to maintain accuracy the people we took into account can only suffer from up to 2 of each factor, therefore reducing the amount of intersections between factors. (This doesn’t apply to the first bar which takes all factors into account).</p>
 <div id="graficos" class="section level3">
 <h3>Graficos</h3>
-<p><img src="index_files/figure-html/Interpretacion_Diabeticos&Obesos-1.png" width="480" /></p>
+<p><img src="index_files/figure-html/Interpretacion_CantEventsAlot-1.png" width="960" /></p>
 </div>
-<div id="con-eventos" class="section level3">
-<h3>Con eventos</h3>
-<p><img src="index_files/figure-html/Interpretacion_Diabeticos&Obesos&Eventos-1.png" width="480" /></p>
-<p> </p>
-</div>
-</div>
-<div id="relacion-entre-obesos-diabeticos-y-antecedentes-familiares" class="section level2 tabset">
-<h2>Relacion entre obesos, diabeticos y antecedentes familiares</h2>
-<p> </p>
-<div id="grafico-2" class="section level3">
-<h3>Grafico</h3>
-<p><img src="index_files/figure-html/Interpretacion_HIPTs&Obesos-1.png" width="480" /></p>
-<p> </p>
-</div>
-</div>
-<div id="cantidad-de-eventos-por-duracion" class="section level2 tabset">
-<h2>Cantidad de eventos por duracion</h2>
-<p> </p>
-<div id="evento-por-duracion-y-ubicacion" class="section level3">
-<h3>Evento por duracion y ubicacion</h3>
-<p><img src="index_files/figure-html/Interpretacion_cantEventosPorDuracionYUbicacion-1.png" width="768" /></p>
-</div>
-<div id="eventos-por-duracion" class="section level3">
-<h3>Eventos por duracion</h3>
-<p><img src="index_files/figure-html/Interpretacion_cantEventosPorDuracion-1.png" width="768" /></p>
-</div>
-<div id="dolor-opresivo" class="section level3">
-<h3>Dolor opresivo</h3>
-<p><img src="index_files/figure-html/Interpretacion_dolorOpresivo-1.png" width="768" /></p>
+<div id="tabla" class="section level3">
+<h3>Tabla</h3>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Category
+</th>
+<th style="text-align:right;">
+Male
+</th>
+<th style="text-align:right;">
+Female
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+% of people with one event
+</td>
+<td style="text-align:right;">
+41.23711
+</td>
+<td style="text-align:right;">
+45.83333
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+% of people with more than one event
+</td>
+<td style="text-align:right;">
+58.76289
+</td>
+<td style="text-align:right;">
+54.16667
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

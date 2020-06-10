@@ -3,7 +3,7 @@ title: "Informe Eventos Cardiacos"
 output:
   html_document:
     css: bootstrap.css
-    theme: flatly
+    theme: yeti
     highlight: tango
     fig_width: 5
     fig_height: 5
@@ -17,55 +17,53 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<div style="margin-bottom:100px;background-color:rgb(15, 15, 15)">
+<div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
+<h2> Introduccion </h2>
+<p>Para poder trabajar de una manera optima con el dataset que se nos fue propocionado, procedimos a buscar informacion y recopilar investigaciones de medicos con experiencia cardiologia. Con una base lista comenzamos a analizar los datos y buscar posibles combinaciones que aporten informacion nueva a lo aportado</p>
 
-<div style="margin-bottom:100px;">
-
-# Introduccion 
-Para poder trabajar de una manera optima con el dataset que se nos fue propocionado, procedimos a buscar informacion y recopilar investigaciones de medicos con experiencia cardiologia. Con una base lista comenzamos a analizar los datos y buscar posibles combinaciones que aporten informacion nueva a lo aportado
-
-
-## Queries 
-
-Para poder definir nuestros Queries, procedimos a averiguar mas acerca de los sintomas que nos podian llegar a informar o predecir un posible evento cardiaco.
-A partir de esta ardua investigacion, procedimos a buscar relacionar esta informacion con los metadatas de nuestro dataset que se nos fue proporcionado.
-Juntando esto pudimos llegar a nuestras primeras queries
-
-1. Metadatas que tienen mas peso en los eventos 
-2.  Diabeticos con hipertension que son obesos y tienen eventos
-3. Antecedentes familiares, con la edad y los eventos
-4. Sme angioso con ubicacion de dolores y tuvieron evento
-5. Porcentaje de sintomas de largo plazo que llevaron a evento
-6. Densidad de eventos por edad en sintomas a largo plazo
+</div>
+<div class="alert alert-dismissible alert-warning"  style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
 
 
-# Analisis de Datos
+<h1>Data analysis</h1>
 
-## Genero  {.tabset }
+<h5>In this section we decided to find out how the different metadata affect the cardiac event</h5>
+</div>
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
+  <h2>Gender</h2>
 
-Este dato nos parecio muy importante ya que segun el *National institutes of Health*, en especial una investigacion del medico Neth Heart J, indica que estos eventos se darian mas en hombres que en mujeres
+<h5>This data seemed very important to us since according to the <strong>National institutes of Health</strong>, especially an investigation by the doctor Neth Heart J, indicates that these events would occur more in men than in women</h5>
 
-### Genero total 
+</div>
 
-```{r GeneroPorEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(5.5,4)}
+<div style="padding-top: 10px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+
+<h3 style="margin-top:10px">Gender graphic (with and without events)</h3> 
+<div style="margin-top: 10px; margin-bottom:10px" >
+
+```{r GeneroPorEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
 library(plotrix)
 
-Female <-as.numeric( nrow(subset(dataset, dataset$Genero == 0)))
+Female <-as.numeric(nrow(subset(dataset, dataset$Genero == 0)))
 Male <- as.numeric(nrow(subset(dataset, dataset$Genero == 1)))
-cantTotalGen <- Female + Male
 
 FPercentage <- round((Female * 100) / (Female + Male))
 MPercentage <- round((Male * 100) / (Female + Male))
 par(mar=c(3,0,3,0))
-pie(c(FPercentage,MPercentage),main = "Cardiac Events by Gender", labels = c(paste(FPercentage,"%"),paste(MPercentage,"%")),col = c("#FF9D47","#04BFAD"),cex = 1, radius = 1)
+pie(c(FPercentage,MPercentage),main = "Gender Distribution", labels = c(paste(FPercentage,"%"),paste(MPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1, radius = 1)
+legend(1.2,0.6,c("Female", "Male"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
 
-legend(1.2,0.6,c("Female", "Male"),fill = c("#FF9D47","#04BFAD"),cex = 0.8)
 ```
 
-### Tuvieron un evento 
+<h5>In this graph we can highlight that we have a high density of male patient than female</h5
+</div>
 
-```{r GeneroSinEvento, echo=FALSE,message=FALSE,warning=FALSE, fig.dim=c(7,5)}
+<h3 style="margin-top:20px; margin-bottom:10px">Events by gender</h3>
+
+```{r GeneroSinEvento, echo=FALSE,message=FALSE,warning=FALSE, fig.dim=c(10,5)}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
 library(plotrix)
@@ -78,22 +76,28 @@ cantTotalGen <- Female + Male
 FPercentage <- round((Female * 100) / (Female + Male))
 MPercentage <- round((Male * 100) / (Female + Male))
 
-pie3D(c(FPercentage,MPercentage),main = "Cardiac Events by Gender", labels = c(paste(FPercentage,"%"),paste(MPercentage,"%")),col = c("#FF9D47","#04BFAD"),labelcex = 1, explode = 0, theta = 1,
-      start = 3, radius = 1, mar = c(5,5,5,5))
+par(mar=c(3,0,3,0))
+pie(c(FPercentage,MPercentage),main = "Cardiac Events by Gender", labels = c(paste(FPercentage,"%"),paste(MPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1, explode = 0, radius = 1)
 
-legend(.3,1.2,c("Female", "Male"),fill = c("#FF9D47","#04BFAD"))
+legend(1.2,0.6,c("Female", "Male"),fill = c("#F4A236","#2A9FD6"),cex=0.8)
 ```
 
+</div>
+</div>
 
-## Edad de quienes tuvieron algun evento cardiaco  {.tabset }
+
+<div class="alert alert-dismissible alert-primary">
+
+<h2>Edad de quienes tuvieron algun evento cardiaco</h2> 
 
 Acerca de la edad de los pacientes que tuvieron algun evento cardiaco, sin tomar en cuenta sus demas problemas de salud, concluimos con que la mayoria de 
 
-### Grafico
+</div>
+<div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
 
-El grafico 
 
-```{r EdadPorEvento, fig.dim=c(5, 5),echo=FALSE,message=FALSE,warning=FALSE}
+
+```{r EdadPorEvento, fig.dim=c(10, 6),echo=FALSE,message=FALSE,warning=FALSE}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
 library(plotrix)
@@ -101,12 +105,11 @@ ageAndEvents <- dataset[,c("Evento", "Edad")]
 attach(ageAndEvents)
 EventoF <- factor(Evento, levels = c(0,1), labels = c("No tuvo evento", "Tuvo evento"))
 histStack(Edad, EventoF, main = "Personas con eventos cardiacos por edad", legend.pos = "topright", 
-          col = c("#038C8C", "#04BFAD"), xlab = "Edad", ylab = "Cantidad de personas", ylim = c(0,150), xlim = c(15,90))
+          col = c("#FF9D47", "#04BFAD"), xlab = "Edad", ylab = "Cantidad de personas", ylim = c(0,150), xlim = c(15,90))
 ```
 
-### Tabla { class.source="bg-success"}
 
-En esta tabla podemos notar claramente que la mayoria de los pacientes que sufren un evento pertenecen a la franja de edad de 32 a 80
+<h5>With this graphic we can see that the density of the age that had an event are people between 35 and 81 years old </h5>
 
 ```{r EdadPorE1vento, echo=FALSE,message=FALSE,warning=FALSE}
 library(readxl)
@@ -145,23 +148,17 @@ kableExtra::kable(tablaDeEdad,"html") %>%
 ```
 
 
+</div>
 
-## Cantidad de personas obesas que tuvieron eventos cardiacos
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
+
+<h2>Sintomas Asociados </h2>
+
+</div>
+
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
 
 
-```{r ObesosPorEvento, echo=FALSE,message=FALSE,warning=FALSE}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-
-
-PersonasObesasConEventosCardiacos <- subset(dataset, dataset$OBES == 1, select = c(Evento,OBES))
-
-
-```
-
-## Sintomas Asociados {.tabset}
-
-### Personas con evento
 ```{r SintomasAsociadosConEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
@@ -175,146 +172,183 @@ cantTotalGen <- SintomasEvento + SintomasSinEvento
 SAPPercentage <- round((SintomasEvento * 100) / (SintomasEvento + SintomasSinEvento))
 SASINPPercentage <- round((SintomasSinEvento * 100) / (SintomasEvento + SintomasSinEvento))
 par(mar=c(3,0,3,0))
-pie(c(SAPPercentage,SASINPPercentage),main = "Cardiac Events by associated symptoms", labels = c(paste(SAPPercentage,"%"),paste(SASINPPercentage,"%")),col = c("#FF9D47","#04BFAD"),cex = 1, radius = 1)
+pie(c(SAPPercentage,SASINPPercentage),main = "Cardiac Events by associated symptoms", labels = c(paste(SAPPercentage,"%"),paste(SASINPPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1, radius = 1)
 
-legend(1.2,0.6,c("With associated symptoms", "Without associated symptoms"),fill = c("#FF9D47","#04BFAD"),cex = 0.8)
+legend(1.2,0.6,c("With associated symptoms", "Without associated symptoms"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
 ```
 
+</div>
 
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
+  <h2>Diabetics</h2>
+</div>
 
-&nbsp;
+<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 
-# Interpretacion
+<h3 style="margin-top:10px">Gender graphic (with and without events)</h3> 
+<div style="margin-top: 10px; margin-bottom:10px" >
 
-Para esta parte nos encargamos de buscar relaciones interesantes entre los datos que analizamos anteriormente
-
-&nbsp;
-
-## Pacientes fumadores y obesos que tienen evento {.tabset}
-
-### Grafico
-```{r Interpretacion_Fumadores&Obesos, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(5,5)}
+```{r DiabeticosAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(VennDiagram)
+library(plotrix)
 
+Diabetic <-as.numeric(nrow(subset(dataset, dataset$DBT == 1)))
+NonDiabetic <- as.numeric(nrow(subset(dataset, dataset$DBT == 0)))
 
-DiabeticosConEventos = subset(dataset, dataset$DBT==1, select = c(Evento,DBT))
-ObesosConEventos = subset(dataset,dataset$TBQ ==1, select = c(Evento,TBQ))
-EventosDeObesosYDiabeticos = subset(dataset,dataset$DBT ==1 & dataset$OBES==1)
-grid.newpage()
-draw.pairwise.venn(length(DiabeticosConEventos$DBT), 
-                   length(ObesosConEventos$TBQ), 
-                   length(EventosDeObesosYDiabeticos$Evento), 
-                   category = c("Diabetic", "Smokers"), lty = rep("blank", 2), 
-                   fill = c("#FF9D47", "#04BFAD"), alpha = rep(0.5, 2), cat.pos = c(0, 0), 
-                   cat.dist = rep(0.025, 2))
+DPercentage <- round((Diabetic * 100) / (Diabetic + NonDiabetic))
+NPercentage <- round((NonDiabetic * 100) / (Diabetic + NonDiabetic))
+par(mar=c(3,0,3,0))
+pie(c(DPercentage,NPercentage),main = "Diabetic Percentage", labels = c(paste(DPercentage,"%"),paste(NPercentage,"%")),col = c("#FF9D47","#04BFAD"),cex = 1,init.angle=25 , radius = 1)
+legend(1.2,0.6,c("Diabetic", "Non diabetic"),fill = c("#FF9D47","#04BFAD"),cex = 0.8)
+
 
 
 ```
 
-### Tabla
+<h5>In this graph we can highlight that we have a high density of male patient than female</h5
+</div>
+</div>
+</div>
 
-&nbsp;
+<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 
-## Pacientes con obesidad y diabetes que tuvieron eventos {.tabset}
+<h3 style="margin-top:10px">Gender graphic (with and without events)</h3> 
+<div style="margin-top: 10px; margin-bottom:10px" >
 
-&nbsp;
-
-### Graficos
-
-```{r Interpretacion_Diabeticos&Obesos, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(5,5)}
+```{r DiabeticosAnalysisEvent, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(VennDiagram)
+library(plotrix)
+
+DBT <- subset(dataset, dataset$DBT == 1, select = c(Evento))
+Diabetic <-as.numeric(nrow(subset(DBT, DBT$Evento == 1)))
+NonDiabetic <- as.numeric(nrow(subset(DBT, DBT$Evento == 0)))
+
+DPercentage <- round((Diabetic * 100) / (Diabetic + NonDiabetic))
+NPercentage <- round((NonDiabetic * 100) / (Diabetic + NonDiabetic))
+par(mar=c(3,0,3,0))
+pie(c(DPercentage,NPercentage),main = "Diabetics with Cardiac Events", labels = c(paste(DPercentage,"%"),paste(NPercentage,"%")),col = c("#FF9D47","#04BFAD"),cex = 1,init.angle=25 , radius = 1)
+legend(1.2,0.6,c("Suffers event", "Doesn't suffer event"),fill = c("#FF9D47","#04BFAD"),cex = 0.8)
 
 
-DiabeticosConEventos = subset(dataset, dataset$DBT==1, select = c(Evento,DBT))
-ObesosConEventos = subset(dataset,dataset$OBES ==1, select = c(Evento,OBES))
-EventosDeObesosYDiabeticos = subset(dataset,dataset$DBT ==1 & dataset$OBES==1)
-grid.newpage()
-draw.pairwise.venn(length(DiabeticosConEventos$DBT), 
-                   length(ObesosConEventos$OBES), 
-                   length(EventosDeObesosYDiabeticos$Evento), 
-                   category = c("Diabeticos", "Obesos"), lty = rep("blank", 2), 
-                   fill = c("#FF9D47", "#04BFAD"), alpha = rep(0.5, 2), cat.pos = c(0, 0), 
-                   cat.dist = rep(0.025, 2))
 
 ```
 
-### Con eventos 
+<h5>In this graph we can highlight that we have a high density of male patient than female</h5
+</div>
+</div>
+</div>
 
-```{r Interpretacion_Diabeticos&Obesos&Eventos, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(5,5)}
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
+  <h2>Family history</h2>
+</div>
+
+<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+
+<h3 style="margin-top:10px">Gender graphic (with and without events)</h3> 
+<div style="margin-top: 10px; margin-bottom:10px" >
+
+```{r AHFAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(VennDiagram)
+library(plotrix)
+AHF <- subset(dataset, dataset$AHF == 1, select = c(Evento))
+Antecedentes <-as.numeric(nrow(subset(AHF, AHF$Evento == 1)))
+SinAntecedentes <- as.numeric(nrow(subset(AHF, AHF$Evento == 0)))
 
-
-DiabeticosConEventos = subset(dataset, dataset$DBT==1 & dataset$Evento ==1, select = c(Evento,DBT))
-ObesosConEventos = subset(dataset,dataset$OBES ==1 & dataset$Evento == 1, select = c(Evento,OBES))
-EventosDeObesosYDiabeticos = subset(dataset, dataset$Evento ==1 & dataset$DBT ==1 & dataset$OBES==1)
-grid.newpage()
-draw.pairwise.venn(length(DiabeticosConEventos$DBT), 
-                   length(ObesosConEventos$OBES), 
-                   length(EventosDeObesosYDiabeticos$Evento), 
-                   category = c("Diabeticos", "Obesos"), lty = rep("blank", 2), 
-                   fill = c("#FF9D47", "#04BFAD"), alpha = rep(0.5, 2), cat.pos = c(0, 0), 
-                   cat.dist = rep(0.025, 2))
+SPercentage <- round((Antecedentes * 100) / (Antecedentes + SinAntecedentes))
+NPercentage <- round((SinAntecedentes * 100) / (Antecedentes + SinAntecedentes))
+par(mar=c(3,0,3,0))
+pie(c(SPercentage,NPercentage),main = "People with Family History and Cardiac Events", labels = c(paste(SPercentage,"%"),paste(NPercentage,"%")),col = c("#FF9D47","#04BFAD"),cex = 1,init.angle=25 , radius = 1)
+legend(1.2,0.6,c("Suffers event", "Doesn't suffer event"),fill = c("#FF9D47","#04BFAD"),cex = 0.8)
 
 ```
 
-&nbsp;
+<h5>In this graph we can highlight that we have a high density of male patient than female</h5
+</div>
+</div>
+</div>
 
-## Relacion entre obesos, diabeticos y antecedentes familiares {.tabset}
+<div class="alert alert-dismissible alert-warning" style="margin-top:100px; margin-bottom:10px">
+<h1>Interpretacion</h1>
 
-&nbsp;
+<h5>Para esta parte nos encargamos de buscar relaciones interesantes entre los datos que analizamos anteriormente</h5>
+</div>
 
-### Grafico
-```{r Interpretacion_HIPTs&Obesos, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(5,5)}
+
+<div class="alert alert-dismissible alert-primary" style="padding-left: 15px; margin-bottom:10px">
+
+<h2>Intersetion between patient with events</h2>
+
+</div>
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+
+
+ <img src="Mosaico_ver5.png"> 
+
+</div>
+
+
+<div class="alert alert-dismissible alert-primary" style="padding-left: 15px; margin-bottom:10px; margin-top:60px">
+
+<h2>Eventos by age and gender</h2>
+
+</div>
+
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+
+
+```{r SintomasAsociadosConEvento2, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(VennDiagram)
+library(ggplot2)
+
+attach(dataset)
+pplwithevents <- subset(dataset, Evento==1)
+eventsFemale <- subset(pplwithevents, Genero==0)
+eventsMale <- subset(pplwithevents, Genero==1)
+age <- c(eventsFemale$Edad,eventsMale$Edad)
+Sex <- c(rep("Female",times=length(eventsFemale$Edad)), rep("Male",times=length(eventsMale$Edad)))
+densitypersex <- data.frame(age,Sex)
+
+ggplot(densitypersex,aes(x=age,fill=Sex)) + geom_density(alpha = 0.5) + ylab("Density") + xlab("Age") + ggtitle("Events per age and gender")
+```
 
 
-Diabeticos = subset(dataset, dataset$DBT==1, select = DBT)
-Obesos = subset(dataset,dataset$OBES ==1, select = OBES)
-AHF = subset(dataset,dataset$AHF==1, select = AHF)
+```{r Interpretacion_Table_AgePerSex, echo=FALSE,message=FALSE,warning=FALSE}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+library(kableExtra)
 
-ObesosYDiabeticos = subset(dataset,dataset$DBT ==1 & dataset$OBES==1)
-AhfyObesos = subset(dataset,dataset$AHF ==1 & dataset$OBES==1)
-AhfyDiabeticos = subset(dataset, dataset$AHF ==1 & dataset$DBT==1)
-AhfDiabeticosObesos = subset(dataset,dataset$AHF ==1 &dataset$OBES==1 &dataset$DBT==1)
+attach(dataset)
+eventsFemale <- subset(dataset, Evento==1 & Genero==0)
+eventsMale <- subset(dataset, Evento==1 & Genero==1)
+AgeMean <- c(round(mean(eventsMale$Edad)),round(mean(eventsFemale$Edad)))
+Sex <- c("Male","Female")
+meanAgeOfPeopleWithEvents <- data.frame(Sex,AgeMean)
 
-grid.newpage()
-venn.plot <- draw.triple.venn(
-  area1 = nrow(Diabeticos),
-  area2 = nrow(Obesos),
-  area3 = nrow(AHF),
-  n12 = nrow(ObesosYDiabeticos),
-  n23 = nrow(AhfyObesos),
-  n13 = nrow(AhfyDiabeticos),
-  n123 = nrow(AhfDiabeticosObesos),
-  category = c("Diabetic", "Obese","Family History"),
-  fill = c("skyblue", "pink1", "mediumorchid"),
-  alpha = 0.3,
-  lty = "blank",
-  cex = 1, # cabia q tanto se destruye mi vision
-  cat.cex = 1,
-  #cat.col = c("blue", "red", "green") changes legends color
-);
-grid.draw(venn.plot)
+kableExtra::kable(meanAgeOfPeopleWithEvents,"html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),full_width = F)
+
 
 ```
 
-&nbsp;
+</div>
 
-## Cantidad de eventos por duracion {.tabset}
 
-&nbsp;
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:60px" >
 
-### Evento por duracion y ubicacion
+<h2>Cantidad de eventos por duracion</h2>
 
-```{r Interpretacion_cantEventosPorDuracionYUbicacion, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(8,5)}
+</div> 
+
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+
+<h3 style="margin-top:10px; margin-bottom:10px">Evento por duracion y ubicacion</h3>
+
+```{r Interpretacion_cantEventosPorDuracionYUbicacion, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(10,5)}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
  library(ggplot2)
@@ -340,12 +374,22 @@ dataComplete <- data.frame(painType,duration,values)
 ggplot(dataComplete, aes(fill=duration, y=values, x=painType)) + 
   geom_bar(position="dodge", stat="identity")+
   xlab("Pain Type")+
-  ylab("Values")+
+  ylab("Cuantity of events")+
   ggtitle("Ammount of event in certeain time by caracteristics")
 
 ```
 
-### Eventos por duracion 
+<h5>In the next graph we evaluate the different types pain suffered before the event.
+For each type of pain we see the ammount of events for different durations of
+said pain.
+From this graph we conclude that most of the events are often produced after
+an opressive type of pain.
+We can also see that duration of the pain is almost independent of the type,
+because all types share the same distribution of people with events by its time.
+Less than a minute is where less people suffers an event, while most people who suffers
+an event suffers it in more than 20 minutes.</h5>
+
+<h3 style="margin-top:50px; margin-bottom:10px">Eventos por duracion </h3>
 
 ```{r Interpretacion_cantEventosPorDuracion, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(8,5)}
 library(readxl)
@@ -366,7 +410,7 @@ barplot(Frequency, col=rev(heat.colors(length(table(legends)))), legend.text=leg
 
 ```
 
-### Dolor opresivo
+<h3 style="margin-top:10px; margin-bottom:10px">Dolor opresivo</h3>
 
 ```{r Interpretacion_dolorOpresivo, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(8,5)}
 library(readxl)
@@ -383,10 +427,76 @@ mor20Min <- round(percent(nrow(pplOpressive),nrow(subset(pplOpressive,pplOpressi
 Oneto20 <- round(percent(nrow(pplOpressive),nrow(subset(pplOpressive,pplOpressive$DD==1)))) 
 
 
+par(mar=c(3,0,3,0))
+pie(c(less1Min,mor20Min,Oneto20),main = "Duration Of pain until event on opressive type of pain", labels = c(paste("  ",less1Min,"%"),paste(mor20Min,"%"),paste(Oneto20,"%")),col = c("#F4A236","#2A9FD6","yellow"),cex = 1, radius = 1)
 
-pie3D(c(less1Min,mor20Min,Oneto20),main = "Duration Of pain until event on opressive type of pain", labels = c(paste("  ",less1Min,"%"),paste(mor20Min,"%"),paste(Oneto20,"%")),col = c("darkgreen","lightblue","red"),labelcex = 1, theta = 1)
-
-legend(0.8,0.8,c("Less than 1 min","More than 20 min"," 1<20 min"),fill = c("darkgreen","lightblue","red"),cex = 0.8)
+legend(1.2,0.6,c("Less than 1 min","More than 20 min"," 1<20 min"),fill = c("#F4A236","#2A9FD6","yellow"),cex = 0.8)
 
 
 ```
+
+</div>
+
+&nbsp; 
+
+## Personas que tuvieron mas de un evento {.tabset}
+
+&nbsp;
+
+This graph shows the percentage of people that suffered from more than one event in relation to various factors. In order to maintain accuracy the people we took into account can only suffer from up to 2 of each factor, therefore reducing the amount of intersections between factors. (This doesn't apply to the first bar which takes all factors into account).
+
+### Graficos
+```{r Interpretacion_CantEventsAlot, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(10,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(ggplot2)
+
+attach(dataset)
+familyHistoryAndQuantity <- subset(dataset, (Evento==1 & AHF==1 & CantE==1 & TBQ==1 & OBES==0) | (Evento==1 & AHF==1 & CantE==1 & TBQ==0 & OBES==1))
+smokingAndQuantity <- subset(dataset, (Evento==1 & TBQ==1 & CantE==1 & AHF==1 & OBES==0) | (Evento==1 & TBQ==1 & CantE==1 & AHF==0 & OBES==1))
+obesityAndQuantity <- subset(dataset, (Evento==1 & OBES==1 & CantE==1 & AHF==1 & TBQ==0) | (Evento==1 & OBES==1 & CantE==1 & AHF==0 & TBQ==1))
+
+percentFamilyHistory <- nrow(familyHistoryAndQuantity) / nrow(subset(dataset,AHF==1 & Evento==1)) * 100
+percentSmoking <- nrow(smokingAndQuantity) / nrow(subset(dataset,TBQ==1 & Evento==1)) *100
+percentObesity <- nrow(obesityAndQuantity) / nrow(subset(dataset,OBES==1 & Evento==1)) * 100
+percentTotal <- nrow(subset(dataset,CantE==1 & Evento==1)) / nrow(subset(dataset,Evento==1)) * 100
+
+barplot(c(percentTotal,percentFamilyHistory,percentSmoking,percentObesity), 
+        main = "Percentage of People That Have Had More Than One Event (Knowing they had one)",
+        xlab = "Factor",
+        ylab = "Percentage",
+        names.arg = c("People with one event", "People with family history", "People that smoke","People that are obese"),
+        col = "darkred",
+        ylim = c(0,60),
+        sub = "
+        (Intersection between categories limited to one)")
+```
+
+### Tabla 
+
+```{r Interpretacion_Table_AgePerCant, echo=FALSE,message=FALSE,warning=FALSE}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+library(kableExtra)
+
+attach(dataset)
+maleWithEvent <- subset(dataset, Genero==1 & Evento==1)
+femaleWithEvent <- subset(dataset, Genero==0 & Evento==1)
+maleWithOne <- subset(maleWithEvent, CantE==0)
+maleWithMoreThanOne <- subset(maleWithEvent, CantE==1)
+
+femaleWithOne <- subset(femaleWithEvent, CantE==0)
+femaleWithMoreThanOne <- subset(femaleWithEvent, CantE==1)
+
+Category <- c("% of people with one event","% of people with more than one event")
+Male <- c(nrow(maleWithOne)/nrow(maleWithEvent)*100,nrow(maleWithMoreThanOne)/nrow(maleWithEvent)*100)
+Female <- c(nrow(femaleWithOne)/nrow(femaleWithEvent)*100,nrow(femaleWithMoreThanOne)/nrow(femaleWithEvent)*100)
+percentageMoreThanOneEvent <- data.frame(Category,Male,Female)
+kableExtra::kable(percentageMoreThanOneEvent,"html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),full_width = F)
+
+
+```
+
+</div>
