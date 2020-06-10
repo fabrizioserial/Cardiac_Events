@@ -15,6 +15,7 @@ output:
 
 ```{r Introduccion, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
 <div style="margin-bottom:100px;background-color:rgb(15, 15, 15)">
