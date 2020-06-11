@@ -1,5 +1,5 @@
 ---
-title: "Informe Eventos Cardiacos"
+title: "Study of factors that influence the ocurrence of cardiac events"
 output:
   html_document:
     css: bootstrap.css
@@ -18,7 +18,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
-<div style="margin-bottom:100px;background-color:rgb(15, 15, 15); margin-top:60px">
+
+<div style="margin-bottom:10px;background-color:rgb(15, 15, 15); margin-top:60px">
 <div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
 <h2> Introduction </h2>
 <h5>To optimally analyze the given dataset, we started by searching information and collecting research from universities, institutions and organizations with experience in cardiology. Then we proceeded to apply the knowledge acquired in analyzing the dataset and looking for possible combinations that bring new information to improve the prediction of cardiac events.</h5>
@@ -43,7 +44,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <h5>The gender of patients in cardiac events is considered an important factor. According to an investigation led by the  <a href=" https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2548254"> Norwegian University of Science and Technology</a>, men have roughly twice the risk of cardiac events compared to women. As we can see on the charts, while gender distribution on the dataset is roughly even, 80% of patients which have had cardiac events are men.</h5>
 
 
-<h3 style="margin-top:10px">Gender graphic (with and without events)</h3> 
+<h3 style="margin-top:10px">Gender distribution </h3> 
 <div style="margin-top: 10px; margin-bottom:10px" >
 
 ```{r GeneroPorEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
@@ -62,10 +63,10 @@ legend(1.2,0.6,c("Female", "Male"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
 
 ```
 
-<h5>In this graph we can highlight that we have a high density of male patient than female</h5>
+
 </div>
 
-<h3 style="margin-top:20px; margin-bottom:10px">Events by gender</h3>
+<h3 style="margin-top:20px; margin-bottom:10px">Cardiac Event by gender</h3>
 
 ```{r GeneroSinEvento, echo=FALSE,message=FALSE,warning=FALSE, fig.dim=c(10,5)}
 library(readxl)
@@ -153,35 +154,6 @@ kableExtra::kable(tablaDeEdad,"html") %>%
 
 </div>
 
-<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
-
-<h2>Associated symptoms</h2>
-
-</div>
-
-<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
-
-
-```{r SintomasAsociadosConEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(plotrix)
-
-
-SintomasEvento <-as.numeric( nrow(subset(dataset, dataset$SA == 1 & dataset$Evento == 1)))
-SintomasSinEvento <- as.numeric(nrow(subset(dataset, dataset$SA == 0 & dataset$Evento == 1)))
-cantTotalGen <- SintomasEvento + SintomasSinEvento
-
-SAPPercentage <- round((SintomasEvento * 100) / (SintomasEvento + SintomasSinEvento))
-SASINPPercentage <- round((SintomasSinEvento * 100) / (SintomasEvento + SintomasSinEvento))
-par(mar=c(3,0,3,0))
-pie(c(SAPPercentage,SASINPPercentage),main = "Cardiac Events by associated symptoms", labels = c(paste(SAPPercentage,"%"),paste(SASINPPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1, radius = 1)
-
-legend(1.2,0.6,c("With associated symptoms", "Without associated symptoms"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
-```
-<h5 style="margin-top:15px">This graph shows relevant information, containing the distribution of patients who had a cardiac event and presented associated symptoms at the time of arrival on the hospital. As we can see, 54% of people who had a cardiac event presented associated symptoms, so this means that more than half of people that present associated symptoms are likely to suffer a cardiac event..</h5>
-</div>
-
 <div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
   <h2>Diabetics</h2>
 </div>
@@ -190,7 +162,7 @@ legend(1.2,0.6,c("With associated symptoms", "Without associated symptoms"),fill
 
 <h5>Diabetes is strongly related to heart diseases. Adults with diabetes are two to three times more likely to have a cardiovascular disease than people without diabetes even when glucose levels are under control. People with diabetes are more probable to have other conditions that contribute to the risk of developing cardiovascular disease (hypertension, high cholesterol and triglycerides or obesity). This supports the results in which 11% of the people in the dataset is diabetic, but 28% of people who suffered a cardiac event is diabetic.</h5>
 
-<h3 style="margin-top:10px">Diabetics in dataset(with and without events)</h3> 
+<h3 style="margin-top:10px">Diabetics distribution</h3> 
 <div style="margin-top: 10px; margin-bottom:10px" >
 
 ```{r DiabeticosAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
@@ -217,7 +189,7 @@ legend(1.2,0.6,c("Diabetic", "Non diabetic"),fill = c("#F4A236","#2A9FD6"),cex =
 
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 
-<h3 style="margin-top:10px">Diabetics who had an event (with and without events)</h3> 
+<h3 style="margin-top:10px">Diabetic with cardiac events</h3> 
 <div style="margin-top: 10px; margin-bottom:10px" >
 
 ```{r DiabeticosAnalysisEvent, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
@@ -249,7 +221,7 @@ legend(1.2,0.6,c("Is diabetic", "Isn't diabetic"),fill = c("#F4A236","#2A9FD6"),
 
 <h5>Smoking cigarettes is a major risk factor for heart disease according to an article by  <a href="https://www.nhlbi.nih.gov/health-topics/smoking-and-your-heart">the National Heart, Lung and Blood Institute (U.S).</a> Smoking increases the probability of plaque buildup inside coronary arteries, which may lead to clogs, blood clots, heart disease, heart failure or a heart attack.</h5>
 
-<h3 style="margin-top:10px">Diabetics in dataset(with and without events)</h3> 
+<h3 style="margin-top:10px">Smoking distribution</h3> 
 <div style="margin-top: 10px; margin-bottom:10px" >
 
 ```{r SmokeAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
@@ -275,7 +247,7 @@ legend(1.2,0.6,c("Smoker", "Non smoker"),fill = c("#F4A236","#2A9FD6"),cex = 0.8
 
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 
-<h3 style="margin-top:10px">Smokers who had an event</h3> 
+<h3 style="margin-top:10px">Smokers with cardiac event</h3> 
 <div style="margin-top: 10px; margin-bottom:10px" >
 
 ```{r SmokeEventAnalysisEvent, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
@@ -307,7 +279,10 @@ legend(1.2,0.6,c("Suffers event", "Doesn't suffer event"),fill = c("#F4A236","#2
 
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 
-<h3 style="margin-top:10px">Patients with family history(with and without events)</h3> 
+<h5>If a patient has a family member who had a registered cardiac event, his risk of having one is even higher. According to an article written by the <a href="https://www.heart.org/en/health-topics/consumer-healthcare/what-is-cardiovascular-disease/family-history-and-heart-disease-stroke "> American Heart Association</a>, family history is an eminent factor to foresee a possible cardiovascular event.
+</h5>
+
+<h3 style="margin-top:10px">Family history distribution</h3> 
 <div style="margin-top: 10px; margin-bottom:10px" >
 
 ```{r AHFAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
@@ -325,7 +300,7 @@ legend(1.2,0.6,c("With family history", "Without family history"),fill = c("#F4A
 
 ```
 
-<h3 style="margin-top:20px; margin-bottom:15px">Family history with event</h3>
+<h3 style="margin-top:20px; margin-bottom:15px">Family history with event cardiac</h3>
 
 ```{r AHFAnalysis2, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
 library(readxl)
@@ -345,7 +320,37 @@ legend(1.2,0.6,c("Suffers event", "Doesn't suffer event"),fill = c("#F4A236","#2
 </div>
 </div>
 
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
+
+<h2>Associated symptoms</h2>
+
+</div>
+
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+
+
+```{r SintomasAsociadosConEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+
+SintomasEvento <-as.numeric( nrow(subset(dataset, dataset$SA == 1 & dataset$Evento == 1)))
+SintomasSinEvento <- as.numeric(nrow(subset(dataset, dataset$SA == 0 & dataset$Evento == 1)))
+cantTotalGen <- SintomasEvento + SintomasSinEvento
+
+SAPPercentage <- round((SintomasEvento * 100) / (SintomasEvento + SintomasSinEvento))
+SASINPPercentage <- round((SintomasSinEvento * 100) / (SintomasEvento + SintomasSinEvento))
+par(mar=c(3,0,3,0))
+pie(c(SAPPercentage,SASINPPercentage),main = "Cardiac Events by associated symptoms", labels = c(paste(SAPPercentage,"%"),paste(SASINPPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1, radius = 1)
+
+legend(1.2,0.6,c("With associated symptoms", "Without associated symptoms"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
+```
+<h5 style="margin-top:15px">This graph shows relevant information, containing the distribution of patients who had a cardiac event and presented associated symptoms at the time of arrival on the hospital. As we can see, 54% of people who had a cardiac event presented associated symptoms, so this means that more than half of people that present associated symptoms are likely to suffer a cardiac event..</h5>
+</div>
+
 <div class="alert alert-dismissible alert-warning" style="margin-top:100px; margin-bottom:10px">
+
 <h1>Interpretation</h1>
 
 <h5>In this section we look for match metadatas and found new data from them</h5>
@@ -432,7 +437,7 @@ densitypersex <- data.frame(age,Sex)
 ggplot(densitypersex,aes(x=age,fill=Sex)) + geom_density(alpha = 0.5) + ylab("Density") + xlab("Age") + ggtitle("Events per age and sex")
 ```
 
-<h5 style="margin-top:15px">While age and gender cannot cause a cardiac event by themselves, they affect how cardiovascular diseases develop on different sections of the population. As seen on the data analysis section, age increases the risk of other symptoms. Also, heart diseases behave differently on men and women: heart diseases develop later on women in relation to men, as we can see on the age mean, for men is 62 while for women is 65. The peak on women age distribution, could be attributed to a decline in the natural hormone estrogen in post-menopausal women, according to an article by American Health Organization <a href="https://www.heart.org/en/health-topics/consumer-healthcare/what-is-cardiovascular-disease/menopause-and-heart-disease#:~:text=A%20decline%20in%20the%20natural,expand%20to%20accommodate%20blood%20flow."> (link)</a></h5>
+<h5 style="margin-top:15px">While age and gender cannot cause a cardiac event by themselves, they affect how cardiovascular diseases develop on different sections of the population. As seen on the data analysis section, age increases the risk of other symptoms. Also, heart diseases behave differently on men and women: heart diseases develop later on women in relation to men, as we can see on the age mean, for men is 62 while for women is 65. The peak on women age distribution, could be attributed to a decline in the natural hormone estrogen in post-menopausal women, according to an article by  <a href="https://www.heart.org/en/health-topics/consumer-healthcare/what-is-cardiovascular-disease/menopause-and-heart-disease#:~:text=A%20decline%20in%20the%20natural,expand%20to%20accommodate%20blood%20flow.">American Health Organization</a></h5>
 
 <h3 style="margin-top:25px; margin-bottom:15px">Graphic of female events</h3>
 
@@ -564,7 +569,7 @@ Oneto20 <- round(percent(nrow(pplOpressive),nrow(subset(pplOpressive,pplOpressiv
 par(mar=c(3,0,3,0))
 pie(c(less1Min,mor20Min,Oneto20),main = "Duration Of pain until event on opressive type of pain", labels = c(paste("  ",less1Min,"%"),paste(mor20Min,"%"),paste(Oneto20,"%")),col = c("#DA4531","#2A9FD6","#F4A236"),cex = 1, radius = 1)
 
-legend(1.2,0.6,c("More than 20 min"," 1 to 20 min","Less than 1 min"),fill = c("#2A9FD6","#F4A236","#DA4531"),cex = 0.8)
+legend(1.2,0.9,c("More than 20 min"," 1 to 20 min","Less than 1 min"),fill = c("#2A9FD6","#F4A236","#DA4531"),cex = 0.8)
 
 
 ```
@@ -612,6 +617,7 @@ barplot(c(percentFamilyHistory,percentSmoking,percentObesity),
 
 ```
 <h5 style="margin-top:20px">This graph shows the percentage of people that suffered from more than one event in relation to various factors. In order to maintain accuracy the people we took into account can only suffer from up to 2 of each factor, therefore reducing the amount of intersections between factors. (This doesn't apply to the first bar which takes all factors into account).</h5>
+<h5>According to the <a href = "https://www.cdc.gov/heartdisease/facts.html">CDC</a> (Centers for Disease Control), 805,000 people in the US have a heart attack in a year. Out of these, 25% have already had one before. Our data is in agreement in the sense that the amount of people that have another event is not low, however it reflects a much higher percentage than the CDC.</h5>
 
 <div style="margin-top:20px"></div>
 ```{r Interpretacion_torta, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,5)}

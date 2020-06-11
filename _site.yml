@@ -10,7 +10,7 @@ navbar:
 output: # Output gobal
   html_document: # Variables globales
     css: bootstrap.css
-    theme: null
+    theme: yeti
     fig_width: 5
     fig_height: 5
     fig_caption: true

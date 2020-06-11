@@ -11,7 +11,7 @@
 
 
 
-<title>Informe Eventos Cardiacos</title>
+<title>Study of factors that influence the ocurrence of cardiac events</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -347,12 +347,12 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Informe Eventos Cardiacos</h1>
+<h1 class="title toc-ignore">Study of factors that influence the ocurrence of cardiac events</h1>
 
 </div>
 
 
-<div style="margin-bottom:100px;background-color:rgb(15, 15, 15); margin-top:60px">
+<div style="margin-bottom:10px;background-color:rgb(15, 15, 15); margin-top:60px">
 <div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
 <h2>
 Introduction
@@ -379,16 +379,13 @@ Gender
 The gender of patients in cardiac events is considered an important factor. According to an investigation led by the <a href=" https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2548254"> Norwegian University of Science and Technology</a>, men have roughly twice the risk of cardiac events compared to women. As we can see on the charts, while gender distribution on the dataset is roughly even, 80% of patients which have had cardiac events are men.
 </h5>
 <h3 style="margin-top:10px">
-Gender graphic (with and without events)
+Gender distribution
 </h3>
 <div style="margin-top: 10px; margin-bottom:10px">
 <p><img src="index_files/figure-html/GeneroPorEvento-1.png" width="960" /></p>
-<h5>
-In this graph we can highlight that we have a high density of male patient than female
-</h5>
 </div>
 <h3 style="margin-top:20px; margin-bottom:10px">
-Events by gender
+Cardiac Event by gender
 </h3>
 <p><img src="index_files/figure-html/GeneroSinEvento-1.png" width="960" /></p>
 </div>
@@ -445,17 +442,6 @@ Older adult
 </tbody>
 </table>
 </div>
-<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
-<h2>
-Associated symptoms
-</h2>
-</div>
-<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
-<img src="index_files/figure-html/SintomasAsociadosConEvento-1.png" width="960" />
-<h5 style="margin-top:15px">
-This graph shows relevant information, containing the distribution of patients who had a cardiac event and presented associated symptoms at the time of arrival on the hospital. As we can see, 54% of people who had a cardiac event presented associated symptoms, so this means that more than half of people that present associated symptoms are likely to suffer a cardiac event..
-</h5>
-</div>
 <div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
 <h2>
 Diabetics
@@ -466,7 +452,7 @@ Diabetics
 Diabetes is strongly related to heart diseases. Adults with diabetes are two to three times more likely to have a cardiovascular disease than people without diabetes even when glucose levels are under control. People with diabetes are more probable to have other conditions that contribute to the risk of developing cardiovascular disease (hypertension, high cholesterol and triglycerides or obesity). This supports the results in which 11% of the people in the dataset is diabetic, but 28% of people who suffered a cardiac event is diabetic.
 </h5>
 <h3 style="margin-top:10px">
-Diabetics in dataset(with and without events)
+Diabetics distribution
 </h3>
 <div style="margin-top: 10px; margin-bottom:10px">
 <p><img src="index_files/figure-html/DiabeticosAnalysis-1.png" width="960" /></p>
@@ -474,7 +460,7 @@ Diabetics in dataset(with and without events)
 </div>
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 <h3 style="margin-top:10px">
-Diabetics who had an event (with and without events)
+Diabetic with cardiac events
 </h3>
 <div style="margin-top: 10px; margin-bottom:10px">
 <p><img src="index_files/figure-html/DiabeticosAnalysisEvent-1.png" width="960" /></p>
@@ -490,7 +476,7 @@ Smoking
 Smoking cigarettes is a major risk factor for heart disease according to an article by <a href="https://www.nhlbi.nih.gov/health-topics/smoking-and-your-heart">the National Heart, Lung and Blood Institute (U.S).</a> Smoking increases the probability of plaque buildup inside coronary arteries, which may lead to clogs, blood clots, heart disease, heart failure or a heart attack.
 </h5>
 <h3 style="margin-top:10px">
-Diabetics in dataset(with and without events)
+Smoking distribution
 </h3>
 <div style="margin-top: 10px; margin-bottom:10px">
 <p><img src="index_files/figure-html/SmokeAnalysis-1.png" width="960" /></p>
@@ -498,7 +484,7 @@ Diabetics in dataset(with and without events)
 </div>
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 <h3 style="margin-top:10px">
-Smokers who had an event
+Smokers with cardiac event
 </h3>
 <div style="margin-top: 10px; margin-bottom:10px">
 <p><img src="index_files/figure-html/SmokeEventAnalysisEvent-1.png" width="960" /></p>
@@ -510,16 +496,30 @@ Family history
 </h2>
 </div>
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+<h5>
+If a patient has a family member who had a registered cardiac event, his risk of having one is even higher. According to an article written by the <a href="https://www.heart.org/en/health-topics/consumer-healthcare/what-is-cardiovascular-disease/family-history-and-heart-disease-stroke "> American Heart Association</a>, family history is an eminent factor to foresee a possible cardiovascular event.
+</h5>
 <h3 style="margin-top:10px">
-Patients with family history(with and without events)
+Family history distribution
 </h3>
 <div style="margin-top: 10px; margin-bottom:10px">
 <p><img src="index_files/figure-html/AHFAnalysis-1.png" width="960" /></p>
 <h3 style="margin-top:20px; margin-bottom:15px">
-Family history with event
+Family history with event cardiac
 </h3>
 <p><img src="index_files/figure-html/AHFAnalysis2-1.png" width="960" /></p>
 </div>
+</div>
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
+<h2>
+Associated symptoms
+</h2>
+</div>
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+<img src="index_files/figure-html/SintomasAsociadosConEvento-1.png" width="960" />
+<h5 style="margin-top:15px">
+This graph shows relevant information, containing the distribution of patients who had a cardiac event and presented associated symptoms at the time of arrival on the hospital. As we can see, 54% of people who had a cardiac event presented associated symptoms, so this means that more than half of people that present associated symptoms are likely to suffer a cardiac event..
+</h5>
 </div>
 <div class="alert alert-dismissible alert-warning" style="margin-top:100px; margin-bottom:10px">
 <h1>
@@ -552,7 +552,7 @@ Events by age and gender
 
 <p><img src="index_files/figure-html/AgeAndGender_Interpretation-1.png" width="960" /></p>
 <h5 style="margin-top:15px">
-While age and gender cannot cause a cardiac event by themselves, they affect how cardiovascular diseases develop on different sections of the population. As seen on the data analysis section, age increases the risk of other symptoms. Also, heart diseases behave differently on men and women: heart diseases develop later on women in relation to men, as we can see on the age mean, for men is 62 while for women is 65. The peak on women age distribution, could be attributed to a decline in the natural hormone estrogen in post-menopausal women, according to an article by American Health Organization <a href="https://www.heart.org/en/health-topics/consumer-healthcare/what-is-cardiovascular-disease/menopause-and-heart-disease#:~:text=A%20decline%20in%20the%20natural,expand%20to%20accommodate%20blood%20flow."> (link)</a>
+While age and gender cannot cause a cardiac event by themselves, they affect how cardiovascular diseases develop on different sections of the population. As seen on the data analysis section, age increases the risk of other symptoms. Also, heart diseases behave differently on men and women: heart diseases develop later on women in relation to men, as we can see on the age mean, for men is 62 while for women is 65. The peak on women age distribution, could be attributed to a decline in the natural hormone estrogen in post-menopausal women, according to an article by <a href="https://www.heart.org/en/health-topics/consumer-healthcare/what-is-cardiovascular-disease/menopause-and-heart-disease#:~:text=A%20decline%20in%20the%20natural,expand%20to%20accommodate%20blood%20flow.">American Health Organization</a>
 </h5>
 <h3 style="margin-top:25px; margin-bottom:15px">
 Graphic of female events
@@ -621,6 +621,9 @@ Patients with more than one event
 <img src="index_files/figure-html/Interpretacion_Table_AgePerCant-1.png" width="960" />
 <h5 style="margin-top:20px">
 This graph shows the percentage of people that suffered from more than one event in relation to various factors. In order to maintain accuracy the people we took into account can only suffer from up to 2 of each factor, therefore reducing the amount of intersections between factors. (This doesn’t apply to the first bar which takes all factors into account).
+</h5>
+<h5>
+According to the <a href = "https://www.cdc.gov/heartdisease/facts.html">CDC</a> (Centers for Disease Control), 805,000 people in the US have a heart attack in a year. Out of these, 25% have already had one before. Our data is in agreement in the sense that the amount of people that have another event is not low, however it reflects a much higher percentage than the CDC.
 </h5>
 <div style="margin-top:20px">
 
