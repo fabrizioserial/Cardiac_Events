@@ -18,13 +18,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
-<div style="margin-bottom:100px;background-color:rgb(15, 15, 15)">
+<div style="margin-bottom:100px;background-color:rgb(15, 15, 15); margin-top:60px">
 <div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
 <h2> Introduction </h2>
 <h5>To optimally analyze the given dataset, we started by searching information and collecting research from universities, institutions and organizations with experience in cardiology. Then we proceeded to apply the knowledge acquired in analyzing the dataset and looking for possible combinations that bring new information to improve the prediction of cardiac events.</h5>
 
 </div>
-<div class="alert alert-dismissible alert-warning"  style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px; margin-top:40px">
+<div class="alert alert-dismissible alert-warning"  style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px; margin-top:60px">
 
 
 <h1>Data analysis</h1>
@@ -40,7 +40,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <div style="padding-top: 10px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 
 
-<h5>The gender of patients in cardiac events is considered an important factor. According to an investigation led by the Norwegian University of Science and Technology, <a href=" https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2548254"> link </a> men have roughly twice the risk of cardiac events compared to women. As we can see on the charts, while gender distribution on the dataset is roughly even, 80% of patients which have had cardiac events are men.</h5>
+<h5>The gender of patients in cardiac events is considered an important factor. According to an investigation led by the  <a href=" https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2548254"> Norwegian University of Science and Technology</a>, men have roughly twice the risk of cardiac events compared to women. As we can see on the charts, while gender distribution on the dataset is roughly even, 80% of patients which have had cardiac events are men.</h5>
 
 
 <h3 style="margin-top:10px">Gender graphic (with and without events)</h3> 
@@ -247,7 +247,7 @@ legend(1.2,0.6,c("Is diabetic", "Isn't diabetic"),fill = c("#F4A236","#2A9FD6"),
 
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 
-<h5>Smoking cigarettes is a major risk factor for heart disease according to an article by the National Heart, Lung and Blood Institute (U.S). <a href="https://www.nhlbi.nih.gov/health-topics/smoking-and-your-heart">(link)</a> Smoking increases the probability of plaque buildup inside coronary arteries, which may lead to clogs, blood clots, heart disease, heart failure or a heart attack.</h5>
+<h5>Smoking cigarettes is a major risk factor for heart disease according to an article by  <a href="https://www.nhlbi.nih.gov/health-topics/smoking-and-your-heart">the National Heart, Lung and Blood Institute (U.S).</a> Smoking increases the probability of plaque buildup inside coronary arteries, which may lead to clogs, blood clots, heart disease, heart failure or a heart attack.</h5>
 
 <h3 style="margin-top:10px">Diabetics in dataset(with and without events)</h3> 
 <div style="margin-top: 10px; margin-bottom:10px" >
@@ -307,10 +307,27 @@ legend(1.2,0.6,c("Suffers event", "Doesn't suffer event"),fill = c("#F4A236","#2
 
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 
-<h3 style="margin-top:10px">Gender graphic (with and without events)</h3> 
+<h3 style="margin-top:10px">Patients with family history(with and without events)</h3> 
 <div style="margin-top: 10px; margin-bottom:10px" >
 
 ```{r AHFAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+Antecedentes <-as.numeric(nrow(subset(dataset, dataset$AHF == 1)))
+SinAntecedentes <- as.numeric(nrow(subset(dataset, dataset$AHF == 0)))
+
+APercentage <- round((Antecedentes * 100) / (Antecedentes + SinAntecedentes))
+NPercentage <- round((SinAntecedentes * 100) / (Antecedentes + SinAntecedentes))
+par(mar=c(3,0,3,0))
+pie(c(SPercentage,NPercentage),main = "Family History Percentage", labels = c(paste(SPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
+legend(1.2,0.6,c("With family history", "Without family history"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
+
+```
+
+<h3 style="margin-top:20px; margin-bottom:15px">Family history with event</h3>
+
+```{r AHFAnalysis2, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
 library(plotrix)
@@ -325,15 +342,13 @@ pie(c(SPercentage,NPercentage),main = "People with Family History and Cardiac Ev
 legend(1.2,0.6,c("Suffers event", "Doesn't suffer event"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
 
 ```
-
-
 </div>
 </div>
 
 <div class="alert alert-dismissible alert-warning" style="margin-top:100px; margin-bottom:10px">
-<h1>Interpretacion</h1>
+<h1>Interpretation</h1>
 
-<h5>Para esta parte nos encargamos de buscar relaciones interesantes entre los datos que analizamos anteriormente</h5>
+<h5>In this section we look for match metadatas and found new data from them</h5>
 </div>
 
 
