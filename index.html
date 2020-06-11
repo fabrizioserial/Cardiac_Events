@@ -355,29 +355,29 @@ div.tocify {
 <div style="margin-bottom:100px;background-color:rgb(15, 15, 15)">
 <div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
 <h2>
-Introduccion
+Introduction
 </h2>
-<p>
-Para poder trabajar de una manera optima con el dataset que se nos fue propocionado, procedimos a buscar informacion y recopilar investigaciones de medicos con experiencia cardiologia. Con una base lista comenzamos a analizar los datos y buscar posibles combinaciones que aporten informacion nueva a lo aportado
-</p>
+<h5>
+To optimally analyze the given dataset, we started by searching information and collecting research from universities, institutions and organizations with experience in cardiology. Then we proceeded to apply the knowledge acquired in analyzing the dataset and looking for possible combinations that bring new information to improve the prediction of cardiac events.
+</h5>
 </div>
-<div class="alert alert-dismissible alert-warning" style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
+<div class="alert alert-dismissible alert-warning" style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px; margin-top:40px">
 <h1>
 Data analysis
 </h1>
 <h5>
-In this section we decided to find out how the different metadata affect the cardiac event
+In this section, we analyze how different factors affect the probability of cardiac events by themselves.
 </h5>
 </div>
 <div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
 <h2>
 Gender
 </h2>
-<h5>
-This data seemed very important to us since according to the <strong>National institutes of Health</strong>, especially an investigation by the doctor Neth Heart J, indicates that these events would occur more in men than in women
-</h5>
 </div>
 <div style="padding-top: 10px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+<h5>
+The gender of patients in cardiac events is considered an important factor. According to an investigation led by the Norwegian University of Science and Technology, <a href=" https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2548254"> link </a> men have roughly twice the risk of cardiac events compared to women. As we can see on the charts, while gender distribution on the dataset is roughly even, 80% of patients which have had cardiac events are men.
+</h5>
 <h3 style="margin-top:10px">
 Gender graphic (with and without events)
 </h3>
@@ -385,24 +385,23 @@ Gender graphic (with and without events)
 <p><img src="index_files/figure-html/GeneroPorEvento-1.png" width="960" /></p>
 <h5>
 In this graph we can highlight that we have a high density of male patient than female
-</h5
+</h5>
 </div>
 <h3 style="margin-top:20px; margin-bottom:10px">
 Events by gender
 </h3>
 <p><img src="index_files/figure-html/GeneroSinEvento-1.png" width="960" /></p>
 </div>
-</div>
 <div class="alert alert-dismissible alert-primary">
 <h2>
-Edad de quienes tuvieron algun evento cardiaco
+Events by age
 </h2>
-<p>Acerca de la edad de los pacientes que tuvieron algun evento cardiaco, sin tomar en cuenta sus demas problemas de salud, concluimos con que la mayoria de</p>
 </div>
 <div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
 
-
-
+<h5 style="margin-bottom:15px">
+Age distribution of cardiac events must be taken into account. Even though research shows that age by itself cannot lead to cardiac issues, it increases the risk of other symptoms, rising the probability of cardiac events.
+</h5>
 <p><img src="index_files/figure-html/EdadPorEvento-1.png" width="960" /></p>
 <h5>
 With this graphic we can see that the density of the age that had an event are people between 35 and 81 years old
@@ -411,17 +410,17 @@ With this graphic we can see that the density of the age that had an event are p
 <thead>
 <tr>
 <th style="text-align:left;">
-Etapa
+Stage
 </th>
 <th style="text-align:right;">
-Porcentaje
+Percentage
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-Adulto Joven
+Young adult
 </td>
 <td style="text-align:right;">
 0
@@ -429,7 +428,7 @@ Adulto Joven
 </tr>
 <tr>
 <td style="text-align:left;">
-Adulto
+Adult
 </td>
 <td style="text-align:right;">
 51
@@ -437,7 +436,7 @@ Adulto
 </tr>
 <tr>
 <td style="text-align:left;">
-Adulto Maduro
+Older adult
 </td>
 <td style="text-align:right;">
 49
@@ -448,11 +447,14 @@ Adulto Maduro
 </div>
 <div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
 <h2>
-Sintomas Asociados
+Associated symptoms
 </h2>
 </div>
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
-<p><img src="index_files/figure-html/SintomasAsociadosConEvento-1.png" width="960" /></p>
+<img src="index_files/figure-html/SintomasAsociadosConEvento-1.png" width="960" />
+<h5 style="margin-top:15px">
+This graph shows relevant information, containing the distribution of patients who had a cardiac event and presented associated symptoms at the time of arrival on the hospital. As we can see, 54% of people who had a cardiac event presented associated symptoms, so this means that more than half of people that present associated symptoms are likely to suffer a cardiac event..
+</h5>
 </div>
 <div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
 <h2>
@@ -460,27 +462,46 @@ Diabetics
 </h2>
 </div>
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+<h5>
+Diabetes is strongly related to heart diseases. Adults with diabetes are two to three times more likely to have a cardiovascular disease than people without diabetes even when glucose levels are under control. People with diabetes are more probable to have other conditions that contribute to the risk of developing cardiovascular disease (hypertension, high cholesterol and triglycerides or obesity). This supports the results in which 11% of the people in the dataset is diabetic, but 28% of people who suffered a cardiac event is diabetic.
+</h5>
 <h3 style="margin-top:10px">
-Gender graphic (with and without events)
+Diabetics in dataset(with and without events)
 </h3>
 <div style="margin-top: 10px; margin-bottom:10px">
 <p><img src="index_files/figure-html/DiabeticosAnalysis-1.png" width="960" /></p>
-<h5>
-In this graph we can highlight that we have a high density of male patient than female
-</h5
-</div>
 </div>
 </div>
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 <h3 style="margin-top:10px">
-Gender graphic (with and without events)
+Diabetics who had an event (with and without events)
 </h3>
 <div style="margin-top: 10px; margin-bottom:10px">
 <p><img src="index_files/figure-html/DiabeticosAnalysisEvent-1.png" width="960" /></p>
-<h5>
-In this graph we can highlight that we have a high density of male patient than female
-</h5
 </div>
+</div>
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
+<h2>
+Smoking
+</h2>
+</div>
+<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+<h5>
+Smoking cigarettes is a major risk factor for heart disease according to an article by the National Heart, Lung and Blood Institute (U.S). <a href="https://www.nhlbi.nih.gov/health-topics/smoking-and-your-heart">(link)</a> Smoking increases the probability of plaque buildup inside coronary arteries, which may lead to clogs, blood clots, heart disease, heart failure or a heart attack.
+</h5>
+<h3 style="margin-top:10px">
+Diabetics in dataset(with and without events)
+</h3>
+<div style="margin-top: 10px; margin-bottom:10px">
+<p><img src="index_files/figure-html/SmokeAnalysis-1.png" width="960" /></p>
+</div>
+</div>
+<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+<h3 style="margin-top:10px">
+Smokers who had an event
+</h3>
+<div style="margin-top: 10px; margin-bottom:10px">
+<p><img src="index_files/figure-html/SmokeEventAnalysisEvent-1.png" width="960" /></p>
 </div>
 </div>
 <div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
@@ -494,10 +515,6 @@ Gender graphic (with and without events)
 </h3>
 <div style="margin-top: 10px; margin-bottom:10px">
 <p><img src="index_files/figure-html/AHFAnalysis-1.png" width="960" /></p>
-<h5>
-In this graph we can highlight that we have a high density of male patient than female
-</h5
-</div>
 </div>
 </div>
 <div class="alert alert-dismissible alert-warning" style="margin-top:100px; margin-bottom:10px">
@@ -515,16 +532,28 @@ Intersetion between patient with events
 </div>
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
 <p><img src="Mosaico_ver5.png"></p>
+<h5 style="margin-top:20px">
+To further analyze which factors produce cardiac events, the intersection between the symptoms the patients presented must be analyzed to define a more accurate prediction.
+</h5>
+<div style="margin-top:20px">
+<p><img src="index_files/figure-html/Mosaico_Interpretation-1.png" width="960" /></p>
+</div>
 </div>
 <div class="alert alert-dismissible alert-primary" style="padding-left: 15px; margin-bottom:10px; margin-top:60px">
 <h2>
-Eventos by age and gender
+Events by age and gender
 </h2>
 </div>
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
 
-
-<p><img src="index_files/figure-html/SintomasAsociadosConEvento2-1.png" width="960" /></p>
+<p><img src="index_files/figure-html/AgeAndGender_Interpretation-1.png" width="960" /></p>
+<h5 style="margin-top:15px">
+While age and gender cannot cause a cardiac event by themselves, they affect how cardiovascular diseases develop on different sections of the population. As seen on the data analysis section, age increases the risk of other symptoms. Also, heart diseases behave differently on men and women: heart diseases develop later on women in relation to men, as we can see on the age mean, for men is 62 while for women is 65. The peak on women age distribution, could be attributed to a decline in the natural hormone estrogen in post-menopausal women, according to an article by American Health Organization <a href="https://www.heart.org/en/health-topics/consumer-healthcare/what-is-cardiovascular-disease/menopause-and-heart-disease#:~:text=A%20decline%20in%20the%20natural,expand%20to%20accommodate%20blood%20flow."> (link)</a>
+</h5>
+<h3 style="margin-top:25px; margin-bottom:15px">
+Graphic of female events
+</h3>
+<p><img src="index_files/figure-html/female_AgeAndGender_Interpretation-1.png" width="960" /></p>
 <table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -558,77 +587,44 @@ Female
 </div>
 <div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:60px">
 <h2>
-Cantidad de eventos por duracion
+Cuantity of event by duration
 </h2>
 </div>
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
 <h3 style="margin-top:10px; margin-bottom:10px">
-Evento por duracion y ubicacion
+Events by duration and ubication
 </h3>
 <p><img src="index_files/figure-html/Interpretacion_cantEventosPorDuracionYUbicacion-1.png" width="960" /></p>
 <h5>
 In the next graph we evaluate the different types pain suffered before the event. For each type of pain we see the ammount of events for different durations of said pain. From this graph we conclude that most of the events are often produced after an opressive type of pain. We can also see that duration of the pain is almost independent of the type, because all types share the same distribution of people with events by its time. Less than a minute is where less people suffers an event, while most people who suffers an event suffers it in more than 20 minutes.
 </h5>
 <h3 style="margin-top:50px; margin-bottom:10px">
-Eventos por duracion
+Events by duration
 </h3>
 <p><img src="index_files/figure-html/Interpretacion_cantEventosPorDuracion-1.png" width="768" /></p>
-<h3 style="margin-top:10px; margin-bottom:10px">
-Dolor opresivo
+<h3 style="margin-top:50px; margin-bottom:10px">
+Opressive
 </h3>
 <p><img src="index_files/figure-html/Interpretacion_dolorOpresivo-1.png" width="768" /></p>
 </div>
 <p> </p>
-<div id="personas-que-tuvieron-mas-de-un-evento" class="section level2 tabset">
-<h2>Personas que tuvieron mas de un evento</h2>
-<p> </p>
-<p>This graph shows the percentage of people that suffered from more than one event in relation to various factors. In order to maintain accuracy the people we took into account can only suffer from up to 2 of each factor, therefore reducing the amount of intersections between factors. (This doesn’t apply to the first bar which takes all factors into account).</p>
-<div id="graficos" class="section level3">
-<h3>Graficos</h3>
-<p><img src="index_files/figure-html/Interpretacion_CantEventsAlot-1.png" width="960" /></p>
+<div class="alert alert-dismissible alert-primary" style="padding-left: 15px; margin-bottom:10px; margin-top:60px">
+<h2>
+Patients with more than one event
+</h2>
 </div>
-<div id="tabla" class="section level3">
-<h3>Tabla</h3>
-<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Category
-</th>
-<th style="text-align:right;">
-Male
-</th>
-<th style="text-align:right;">
-Female
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-% of people with one event
-</td>
-<td style="text-align:right;">
-41.23711
-</td>
-<td style="text-align:right;">
-45.83333
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-% of people with more than one event
-</td>
-<td style="text-align:right;">
-58.76289
-</td>
-<td style="text-align:right;">
-54.16667
-</td>
-</tr>
-</tbody>
-</table>
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+<img src="index_files/figure-html/Interpretacion_Table_AgePerCant-1.png" width="960" />
+<h5 style="margin-top:20px">
+This graph shows the percentage of people that suffered from more than one event in relation to various factors. In order to maintain accuracy the people we took into account can only suffer from up to 2 of each factor, therefore reducing the amount of intersections between factors. (This doesn’t apply to the first bar which takes all factors into account).
+</h5>
+<div style="margin-top:20px">
+
 </div>
+<img src="index_files/figure-html/Interpretacion_torta-1.png" width="960" />
+<h5 style="margin-top:15px">
+In these graphs we analyzed how many patients that suffered from a cardiac episode later suffered from another or more. The pie chart shows these percentages, and reflects that 57.9% of people who have an event later had another or more. The bar chart shows the percentages of patients that had an event and were obese, smokers or had family history, that also suffered from another event. In order to reduce inaccuracy, within each factor we only took into account people that fit within one or no other category, therefore reducing the intersection between categories to 1 or none. The barplot shows that individuals that smoke are likelier to suffer from another episode, followed by ones who are obese and ones with family history.
+</h5>
 </div>
 </div>
 
