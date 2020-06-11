@@ -29,6 +29,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <h1>Data analysis</h1>
 
+
 <h5>In this section, we analyze how different factors affect the probability of cardiac events by themselves.</h5>
 </div>
 <div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
