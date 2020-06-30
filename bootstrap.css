@@ -81,6 +81,10 @@ body {
   outline: 0 !important;
 }
 
+.tocify-extend-page {
+  height: 0 !important;
+}
+
 hr {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;

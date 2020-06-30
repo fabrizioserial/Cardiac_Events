@@ -640,4 +640,13 @@ pie(percentages, labels = lbls, col = c("#2A9FD6", "#F4A236"), main = "Percentag
 <h5 style="margin-top:15px">In these graphs we analyzed how many patients that suffered from a cardiac episode later suffered from another or more. The pie chart shows these percentages, and reflects that 57.9% of people who have an event later had another or more. The bar chart shows the percentages of patients that had an event and were obese, smokers or had family history, that also suffered from another event. In order to reduce inaccuracy, within each factor we only took into account people that fit within one or no other category, therefore reducing the intersection between categories to 1 or none. The barplot shows that individuals that smoke are likelier to suffer from another episode, followed by ones who are obese and ones with family history.     </h5>
 
 </div>
+
+<div style="margin-top:120px; margin-bottom:20px">
+<div class="alert alert-dismissible alert-primary" style="padding-left: 15px; margin-bottom:10px; margin-top:60px">
+<p style="text-align:center; font-size: 40px">TEAM</p>
+</div>
+<img src="team_CardiacEvent.png" alt="Team">
+</div>
+
+
 </div>
