@@ -1,9 +1,8 @@
 name: 'Cardiac Events'
 output_dir: '.'
 navbar:
-  title: '<div><p style="font-size: 25px">Study of factors that influence the ocurrence of cardiac events</p></div>' 
+  title: "Study of factors that influence the ocurrence of cardiac events" 
   type: inverse 
-  left: # Orientación de las pestañas
   
 
 output: # Output gobal
