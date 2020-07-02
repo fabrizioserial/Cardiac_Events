@@ -1,7 +1,7 @@
 name: 'Cardiac Events'
 output_dir: '.'
 navbar:
-
+ 
   type: inverse 
   
 

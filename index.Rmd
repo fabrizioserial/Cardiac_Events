@@ -18,6 +18,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
+<div class="alert alert-dismissible alert-warning"  style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px; margin-top:60px">
+
+<h1 style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%; text-align: center;">Study of factors that influence the ocurrence of cardiac events</h1>
+
+</div>
+
 
 <div style="margin-bottom:10px;background-color:rgb(15, 15, 15); margin-top:60px">
 <div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
@@ -99,7 +108,7 @@ legend(1.2,0.6,c("Female", "Male"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
 
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 
-<h5>Diabetes is strongly related to heart diseases. Adults with diabetes are two to three times more likely to have a cardiovascular disease than people without diabetes even when glucose levels are under control. People with diabetes are more probable to have other conditions that contribute to the risk of developing cardiovascular disease (hypertension, high cholesterol and triglycerides or obesity). This supports the results in which 11% of the people in the dataset is diabetic, but 28% of people who suffered a cardiac event is diabetic.</h5>
+<h5>Diabetes is strongly related to heart diseases. Adults with diabetes are two to three times more likely to have a cardiovascular disease than people without diabetes even when glucose levels are under control. People with diabetes are more probable to have other conditions that contribute to the risk of developing cardiovascular disease (hypertension, high cholesterol and triglycerides or obesity). This supports the results in which 11% of the people in the dataset is diabetic, but 28% of people who suffered a cardiac event is diabetic. <a href="riesgo_cardiovascular.pdf">"Framingham Heart Study"</a> by Christopher J. O’Donnell and Roberto Elosua</h5>
 
 <h3 style="margin-top:10px">Diabetics distribution</h3>
 
@@ -318,43 +327,6 @@ ggplot(ageAndEvents, aes(x=age,fill=event)) + geom_density(alpha = 0.5) + ylab("
 ```
 
 
-<h5>With this graphic we can see that the density of the age that had an event are people between 35 and 81 years old </h5>
-
-```{r EdadPorE1vento, echo=FALSE,message=FALSE,warning=FALSE}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(plotrix)
-library(kableExtra)
-ageAndEvents <- subset(dataset, dataset$Evento == 1, select = c(Evento,Edad))
-
-
-countJoven <- 0
-countAdulto <- 0
-countViejo <- 0
-
-
-for (val in ageAndEvents$Edad) {
-if(val<31)  countJoven = countJoven+1
-if(val>=31 && val<65) countAdulto = countAdulto +1
-if(val>=65) countViejo = countViejo +1
-}
-
-Stage <- c("Young adult","Adult","Older adult")
-
-EdadTotal <- countJoven+countAdulto+countViejo
-PorcentajeJoven <- round((countJoven*100)/121)
-PorcentajeAdulto <- round((countAdulto*100)/121)
-PorcentajeViejo <- round((countViejo*100)/121)
-
-Percentage<- c(PorcentajeJoven ,PorcentajeAdulto ,PorcentajeViejo)
-
-
-tablaDeEdad <- data.frame(Stage,Percentage)
-kableExtra::kable(tablaDeEdad,"html") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"),full_width = F)
-
-
-```
 
 
 </div>
@@ -496,7 +468,7 @@ kableExtra::kable(meanAgeOfPeopleWithEvents,"html") %>%
 
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
 
-<h3 style="margin-top:50px; margin-bottom:10px">Events by duration</h3>
+<h3 style=" margin-bottom:10px">Events by duration</h3>
 
 ```{r Interpretacion_cantEventosPorDuracion, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(8,5)}
 library(readxl)
@@ -518,7 +490,7 @@ barplot(Frequency, col=rev(heat.colors(length(table(legends)))), legend.text=leg
 ```
 
 
-<h3 style="margin-top:10px; margin-bottom:10px">Events by duration and ubication</h3>
+<h3 style="margin-bottom:10px; margin-top:30px">Events by duration and ubication</h3>
 
 ```{r Interpretacion_cantEventosPorDuracionYUbicacion, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(10,5)}
 library(readxl)
@@ -680,7 +652,7 @@ In our case we choose to work with the 0.17 value since its the value where we c
 people that have events and the ones who do not.</h5>
 
 
-<h2 style="margin-top:50px">Confusion table</h2>
+<h2 style="margin-top:50px">Prediction Quality</h2>
 
 
 <div style="margin-top:20px">
@@ -727,6 +699,7 @@ a necesary sacrifice to prevent true cases.</h5>
 <p style="text-align:center; font-size: 40px">
 TEAM
 </p>
+<h5 style="text-align:center;">Click each picture to get the email</h5>
 </div>
 
 <div  class="flex-container">

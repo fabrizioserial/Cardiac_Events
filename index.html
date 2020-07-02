@@ -349,6 +349,14 @@ div.tocify {
 </div>
 
 
+<div class="alert alert-dismissible alert-warning" style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px; margin-top:60px">
+<h1 style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%; text-align: center;">
+Study of factors that influence the ocurrence of cardiac events
+</h1>
+</div>
 <div style="margin-bottom:10px;background-color:rgb(15, 15, 15); margin-top:60px">
 <div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
 <h2>
@@ -394,7 +402,7 @@ Diabetics
 </div>
 <div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
 <h5>
-Diabetes is strongly related to heart diseases. Adults with diabetes are two to three times more likely to have a cardiovascular disease than people without diabetes even when glucose levels are under control. People with diabetes are more probable to have other conditions that contribute to the risk of developing cardiovascular disease (hypertension, high cholesterol and triglycerides or obesity). This supports the results in which 11% of the people in the dataset is diabetic, but 28% of people who suffered a cardiac event is diabetic.
+Diabetes is strongly related to heart diseases. Adults with diabetes are two to three times more likely to have a cardiovascular disease than people without diabetes even when glucose levels are under control. People with diabetes are more probable to have other conditions that contribute to the risk of developing cardiovascular disease (hypertension, high cholesterol and triglycerides or obesity). This supports the results in which 11% of the people in the dataset is diabetic, but 28% of people who suffered a cardiac event is diabetic. <a href="riesgo_cardiovascular.pdf">“Framingham Heart Study”</a> by Christopher J. O’Donnell and Roberto Elosua
 </h5>
 <h3 style="margin-top:10px">
 Diabetics distribution
@@ -461,52 +469,10 @@ Events by age
 </h2>
 </div>
 <div style="padding-top: 10px; padding-right: 15px; padding-bottom: 10px; padding-left: 15px">
-
 <h5 style="margin-bottom:15px">
 Age distribution of cardiac events must be taken into account. Even though research shows that age by itself cannot lead to cardiac issues, it increases the risk of other symptoms, rising the probability of cardiac events.
 </h5>
 <p><img src="index_files/figure-html/EdadPorEvento-1.png" width="960" /></p>
-<h5>
-With this graphic we can see that the density of the age that had an event are people between 35 and 81 years old
-</h5>
-<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Stage
-</th>
-<th style="text-align:right;">
-Percentage
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Young adult
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Adult
-</td>
-<td style="text-align:right;">
-51
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Older adult
-</td>
-<td style="text-align:right;">
-49
-</td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="alert alert-dismissible alert-warning" style="margin-top:100px; margin-bottom:10px">
 <h1>
@@ -582,11 +548,11 @@ Quantity of event by duration
 </h2>
 </div>
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
-<h3 style="margin-top:50px; margin-bottom:10px">
+<h3 style=" margin-bottom:10px">
 Events by duration
 </h3>
 <p><img src="index_files/figure-html/Interpretacion_cantEventosPorDuracion-1.png" width="768" /></p>
-<h3 style="margin-top:10px; margin-bottom:10px">
+<h3 style="margin-bottom:10px; margin-top:30px">
 Events by duration and ubication
 </h3>
 <p><img src="index_files/figure-html/Interpretacion_cantEventosPorDuracionYUbicacion-1.png" width="960" /></p>
@@ -672,7 +638,7 @@ Generating predictor
 This box plot is created from the logistic regression. With the information gathered in the graphic we are able to determinate which people are considered to be a possible cardiac event case when the test is done. This limit is set in a position where less false positives cases are issued at the same time that the accuracy is not lost. In our case we choose to work with the 0.17 value since its the value where we can se a clear division between the people that have events and the ones who do not.
 </h5>
 <h2 style="margin-top:50px">
-Confusion table
+Prediction Quality
 </h2>
 <div style="margin-top:20px">
 <table>
@@ -734,6 +700,9 @@ The AUROC curve represent the ratios between false positives and false negatives
 <p style="text-align:center; font-size: 40px">
 TEAM
 </p>
+<h5 style="text-align:center;">
+Click each picture to get the email
+</h5>
 </div>
 <div class="flex-container">
 <div>
