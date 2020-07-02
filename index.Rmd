@@ -632,7 +632,7 @@ pie(percentages, labels = lbls, col = c("#2A9FD6", "#F4A236"), main = "Percentag
 
 <h1>Predictor</h1>
 
-<h5>In this section we look for match metadatas and found new data from them</h5>
+<h5>In this section we look for predict an event</h5>
 </div>
 
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
@@ -654,7 +654,7 @@ Using the information aquired on the interpretation of factors, and various mach
 <div style="   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;">
+  width: 80%;">
 <img src="mau_graph.png"></img>
 </div>
 
@@ -670,12 +670,12 @@ Using the information aquired on the interpretation of factors, and various mach
 <div style="   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;">
+  width: 90%;">
 <img src="graph1.png"></img>
 </div>
 
 
-<h5>This box plot is created from the logistic regression. With the information gathered in the graphic we
+<h5 style="margin-top:20px">This box plot is created from the logistic regression. With the information gathered in the graphic we
 are able to determinate which people are considered to be a possible cardiac event case when the test is done.
 This limit is set in a position where less false positives cases are issued at the same time that the accuracy is not lost.
 In our case we choose to work with the 0.17 value since its the value where we can se a clear division between the
@@ -718,7 +718,7 @@ a necesary sacrifice to prevent true cases.</h5>
   margin-left: auto;
   margin-right: auto;
   margin-top:20px;
-  width: 70%;">
+  width: 90%;">
 <img src="graph2.png"></img>
 </div>
 </div>
