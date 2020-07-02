@@ -1,5 +1,5 @@
 ---
-title: "Study of factors that influence the ocurrence of cardiac events"
+title: " "
 output:
   html_document:
     css: bootstrap.css
@@ -48,7 +48,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <div  class="flex-containerPieC">
 
-<div>
+<div style="margin-top: 10px; margin-bottom:10px">
 
 ```{r GeneroPorEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(6,5)}
 library(readxl)
@@ -642,12 +642,12 @@ This graph shows the influence of every factor on the ocurrence of events, the d
 Using the information aquired on the interpretation of factors, and various machine learning methods, we determined that the most important factors were:</h5>
 
 <ul class="b">
-<li>Age (Edad)</li>
-<li>Family History (AHF)</li>
-<li>Smoking (TBQ)</li>
-<li>Obesity (OBES)</li>
-<li>Lipids Alteration (DLP)</li>
-<li>Arterial Hypertension (HTA)</li>
+<li><b>Edad: </b>Age</li>
+<li><b> AHF: </b>Family History</li>
+<li><b>TBQ: </b>Smoking</li>
+<li><b>OBES: </b>Obesity</li>
+<li><b>DLP: </b>Lipids Alteration</li>
+<li><b>HTA: </b>Arterial Hypertension</li>
 </ul>
 
 

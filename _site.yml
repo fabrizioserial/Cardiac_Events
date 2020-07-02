@@ -1,11 +1,10 @@
 name: 'Cardiac Events'
 output_dir: '.'
 navbar:
-  title: "Cardiac events" 
+  title: '<div><p style="font-size: 25px">Study of factors that influence the ocurrence of cardiac events</p></div>' 
   type: inverse 
   left: # Orientación de las pestañas
-    - text: "Home" # Titulo de pestaña
-      href: index.html # Path al archivo de pestaña
+  
 
 output: # Output gobal
   html_document: # Variables globales
