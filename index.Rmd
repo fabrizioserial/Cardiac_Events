@@ -236,7 +236,7 @@ SinAntecedentes <- as.numeric(nrow(subset(dataset, dataset$AHF == 0)))
 APercentage <- round((Antecedentes * 100) / (Antecedentes + SinAntecedentes))
 NPercentage <- round((SinAntecedentes * 100) / (Antecedentes + SinAntecedentes))
 par(mar=c(3,0,3,0))
-pie(c(SPercentage,NPercentage),main = "Family History Percentage", labels = c(paste(SPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
+pie(c(APercentage,NPercentage),main = "Family History Percentage", labels = c(paste(APercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
 legend(1.05,0.6,c("With FH", "Without FH"),fill = c("#F4A236","#2A9FD6"),cex = 0.85)
 
 ```
@@ -490,11 +490,33 @@ kableExtra::kable(meanAgeOfPeopleWithEvents,"html") %>%
 
 <div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:60px" >
 
-<h2>Cuantity of event by duration</h2>
+<h2>Quantity of event by duration</h2>
 
 </div> 
 
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+
+<h3 style="margin-top:50px; margin-bottom:10px">Events by duration</h3>
+
+```{r Interpretacion_cantEventosPorDuracion, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(8,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+Eventos <- subset(dataset, dataset$Evento == 1)
+
+EventosA <- subset(Eventos, Eventos$DD == -1)
+EventosB <- subset(Eventos, Eventos$DD == 1)
+EventosC <- subset(Eventos, Eventos$DD == 0)
+
+Frequency <- c(nrow(EventosA),nrow(EventosB), nrow(EventosC))
+legends <- c("Less than a minute","1 to 20 minute","More than 20 minute")
+par(mar=c(3,8,5,6))
+
+barplot(Frequency, col=rev(heat.colors(length(table(legends)))), legend.text=legends, xlim = c(0,6), main="Cuantity of events by duration of pain", ylab="Cuantity")
+
+```
+
 
 <h3 style="margin-top:10px; margin-bottom:10px">Events by duration and ubication</h3>
 
@@ -538,29 +560,6 @@ We can also see that duration of the pain is almost independent of the type,
 because all types share the same distribution of people with events by its time.
 Less than a minute is where less people suffers an event, while most people who suffers
 an event suffers it in more than 20 minutes.</h5>
-
-<h3 style="margin-top:50px; margin-bottom:10px">Events by duration</h3>
-
-```{r Interpretacion_cantEventosPorDuracion, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(8,5)}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(plotrix)
-
-Eventos <- subset(dataset, dataset$Evento == 1)
-
-EventosA <- subset(Eventos, Eventos$DD == -1)
-EventosB <- subset(Eventos, Eventos$DD == 1)
-EventosC <- subset(Eventos, Eventos$DD == 0)
-
-Frequency <- c(nrow(EventosA),nrow(EventosB), nrow(EventosC))
-legends <- c("Less than a minute","1 to 20 minute","More than 20 minute")
-par(mar=c(3,8,5,6))
-
-barplot(Frequency, col=rev(heat.colors(length(table(legends)))), legend.text=legends, xlim = c(0,6), main="Cuantity of events by duration of pain", ylab="Cuantity")
-
-```
-
-
 </div>
 
 &nbsp;
@@ -637,7 +636,14 @@ pie(percentages, labels = lbls, col = c("#2A9FD6", "#F4A236"), main = "Percentag
 
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
 
-<h5>
+<div style="   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;">
+<img src="mau_graph.png"></img>
+</div>
+
+<h5 style="margin-top:20px">
 This graph shows the influence of every factor on the ocurrence of events, the darker the blue, the more influence it has on the ocurrence.
 Using the information aquired on the interpretation of factors, and various machine learning methods, we determined that the most important factors were:</h5>
 
@@ -649,14 +655,6 @@ Using the information aquired on the interpretation of factors, and various mach
 <li><b>DLP: </b>Lipids Alteration</li>
 <li><b>HTA: </b>Arterial Hypertension</li>
 </ul>
-
-
-<div style="   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;">
-<img src="mau_graph.png"></img>
-</div>
 
 </div>
 
@@ -685,7 +683,7 @@ people that have events and the ones who do not.</h5>
 <h2 style="margin-top:50px">Confusion table</h2>
 
 
-<div>
+<div style="margin-top:20px">
 <table>
   <tr>
     <th> </th>
@@ -702,15 +700,16 @@ people that have events and the ones who do not.</h5>
     <td>34</td>
     <td>15</td>
   </tr>
-
 </table>
 </div>
+
+<h5 style="margin-top:20px">After generating our model, we put it to the test using the data of 250 patients. Out of these, our model accurately predicted 201 of the cases, giving it a success rate of 80.4%. Out of the cases that weren't predicted successfully, 13.6% were false positives and 6% were false negatives. We decided to use this model as the amount of false negatives is relatively low, and the false positives are merely a sacrifice needed in order to prevent the possibility of not hospitalizing a patient with a true case.</h5>
 </div>
 
 
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
-<h2 style="margin-top:30px">Auroc curve</h2>
-<h5>The auroc curve represent the ratios between false positives and false negatives. With this curve we can
+<h2 style="margin-top:30px">AUROC curve</h2>
+<h5>The AUROC curve represent the ratios between false positives and false negatives. With this curve we can
 confirm that there is a low ratio of false positives. Although there is a larger ammount of false negatives, it is
 a necesary sacrifice to prevent true cases.</h5>
 

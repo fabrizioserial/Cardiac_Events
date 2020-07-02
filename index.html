@@ -328,7 +328,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Study of factors that influence the ocurrence of cardiac events</a>
+      <a class="navbar-brand" href="index.html"></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -578,10 +578,14 @@ Female
 </div>
 <div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:60px">
 <h2>
-Cuantity of event by duration
+Quantity of event by duration
 </h2>
 </div>
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+<h3 style="margin-top:50px; margin-bottom:10px">
+Events by duration
+</h3>
+<p><img src="index_files/figure-html/Interpretacion_cantEventosPorDuracion-1.png" width="768" /></p>
 <h3 style="margin-top:10px; margin-bottom:10px">
 Events by duration and ubication
 </h3>
@@ -589,10 +593,6 @@ Events by duration and ubication
 <h5>
 In the next graph we evaluate the different types pain suffered before the event. For each type of pain we see the ammount of events for different durations of said pain. From this graph we conclude that most of the events are often produced after an opressive type of pain. We can also see that duration of the pain is almost independent of the type, because all types share the same distribution of people with events by its time. Less than a minute is where less people suffers an event, while most people who suffers an event suffers it in more than 20 minutes.
 </h5>
-<h3 style="margin-top:50px; margin-bottom:10px">
-Events by duration
-</h3>
-<p><img src="index_files/figure-html/Interpretacion_cantEventosPorDuracion-1.png" width="768" /></p>
 </div>
 <p> </p>
 <div class="alert alert-dismissible alert-primary" style="padding-left: 15px; margin-bottom:10px; margin-top:60px">
@@ -625,7 +625,13 @@ In this section we look for predict an event
 </h5>
 </div>
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
-<h5>
+<div style="   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;">
+<p><img src="mau_graph.png"></img></p>
+</div>
+<h5 style="margin-top:20px">
 This graph shows the influence of every factor on the ocurrence of events, the darker the blue, the more influence it has on the ocurrence. Using the information aquired on the interpretation of factors, and various machine learning methods, we determined that the most important factors were:
 </h5>
 <ul class="b">
@@ -648,12 +654,6 @@ This graph shows the influence of every factor on the ocurrence of events, the d
 <b>HTA: </b>Arterial Hypertension
 </li>
 </ul>
-<div style="   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;">
-<p><img src="mau_graph.png"></img></p>
-</div>
 </div>
 <div class="alert alert-dismissible alert-primary" style="padding-left: 15px;padding-right: 15px; margin-bottom:10px; margin-top:60px">
 <h2>
@@ -674,7 +674,7 @@ This box plot is created from the logistic regression. With the information gath
 <h2 style="margin-top:50px">
 Confusion table
 </h2>
-<div>
+<div style="margin-top:20px">
 <table>
 <tr>
 <th>
@@ -710,13 +710,16 @@ Predict value 1
 </tr>
 </table>
 </div>
+<h5 style="margin-top:20px">
+After generating our model, we put it to the test using the data of 250 patients. Out of these, our model accurately predicted 201 of the cases, giving it a success rate of 80.4%. Out of the cases that weren’t predicted successfully, 13.6% were false positives and 6% were false negatives. We decided to use this model as the amount of false negatives is relatively low, and the false positives are merely a sacrifice needed in order to prevent the possibility of not hospitalizing a patient with a true case.
+</h5>
 </div>
 <div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
 <h2 style="margin-top:30px">
-Auroc curve
+AUROC curve
 </h2>
 <h5>
-The auroc curve represent the ratios between false positives and false negatives. With this curve we can confirm that there is a low ratio of false positives. Although there is a larger ammount of false negatives, it is a necesary sacrifice to prevent true cases.
+The AUROC curve represent the ratios between false positives and false negatives. With this curve we can confirm that there is a low ratio of false positives. Although there is a larger ammount of false negatives, it is a necesary sacrifice to prevent true cases.
 </h5>
 <div style="   display: block;
   margin-left: auto;
