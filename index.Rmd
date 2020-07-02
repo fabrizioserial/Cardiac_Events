@@ -48,7 +48,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <div  class="flex-containerPieC">
 
-<div style="margin-top: 10px; margin-bottom:10px" >
+<div>
 
 ```{r GeneroPorEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(6,5)}
 library(readxl)
@@ -642,6 +642,12 @@ pie(percentages, labels = lbls, col = c("#2A9FD6", "#F4A236"), main = "Percentag
 <img src="mau_graph.png"></img>
 </div>
 
+<div style="   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;">
+<img src="graph1.png"></img>
+</div>
 
 
 <h2>Confusion table</h2>
@@ -666,6 +672,13 @@ pie(percentages, labels = lbls, col = c("#2A9FD6", "#F4A236"), main = "Percentag
   </tr>
 
 </table>
+</div>
+
+<div style="   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;">
+<img src="graph2.png"></img>
 </div>
 
 <div style="margin-top:120px; margin-bottom:20px">
