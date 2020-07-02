@@ -98,6 +98,11 @@ th {
   color: white;
 }
 
+
+ul.b {
+  list-style-type: square;
+}
+
 .tocify-extend-page {
   height: 0 !important;
 }

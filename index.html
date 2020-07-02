@@ -627,19 +627,54 @@ Predictor
 In this section we look for match metadatas and found new data from them
 </h5>
 </div>
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+<h5>
+This graph shows the influence of every factor on the ocurrence of events, the darker the blue, the more influence it has on the ocurrence. Using the information aquired on the interpretation of factors, and various machine learning methods, we determined that the most important factors were:
+</h5>
+<ul class="b">
+<li>
+Age (Edad)
+</li>
+<li>
+Family History (AHF)
+</li>
+<li>
+Smoking (TBQ)
+</li>
+<li>
+Obesity (OBES)
+</li>
+<li>
+Lipids Alteration (DLP)
+</li>
+<li>
+Arterial Hypertension (HTA)
+</li>
+</ul>
 <div style="   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 70%;">
 <p><img src="mau_graph.png"></img></p>
 </div>
+</div>
+<div class="alert alert-dismissible alert-primary" style="padding-left: 15px;padding-right: 15px; margin-bottom:10px; margin-top:60px">
+<h2>
+Generating predictor
+</h2>
+</div>
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+
 <div style="   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 70%;">
 <p><img src="graph1.png"></img></p>
 </div>
-<h2>
+<h5>
+This box plot is created from the logistic regression. With the information gathered in the graphic we are able to determinate which people are considered to be a possible cardiac event case when the test is done. This limit is set in a position where less false positives cases are issued at the same time that the accuracy is not lost. In our case we choose to work with the 0.17 value since its the value where we can se a clear division between the people that have events and the ones who do not.
+</h5>
+<h2 style="margin-top:50px">
 Confusion table
 </h2>
 <div>
@@ -678,11 +713,21 @@ Predict value 1
 </tr>
 </table>
 </div>
+</div>
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+<h2 style="margin-top:30px">
+Auroc curve
+</h2>
+<h5>
+The auroc curve represent the ratios between false positives and false negatives. With this curve we can confirm that there is a low ratio of false positives. Although there is a larger ammount of false negatives, it is a necesary sacrifice to prevent true cases.
+</h5>
 <div style="   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top:20px;
   width: 70%;">
 <p><img src="graph2.png"></img></p>
+</div>
 </div>
 <div style="margin-top:120px; margin-bottom:20px">
 <div class="alert alert-dismissible alert-primary" style="padding-left: 15px;padding-right: 15px; margin-bottom:10px; margin-top:60px">
