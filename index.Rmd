@@ -655,7 +655,9 @@ people that have events and the ones who do not.</h5>
 <h2 style="margin-top:50px">Prediction Quality</h2>
 
 
-<div style="margin-top:20px">
+<div style="margin-top:20px; width: 40%;display: block;
+  margin-left: auto;
+  margin-right: auto;" >
 <table>
   <tr>
     <th> </th>
