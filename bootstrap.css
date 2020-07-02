@@ -81,9 +81,54 @@ body {
   outline: 0 !important;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+
+
+th {
+  background-color: #292929;
+  color: white;
+}
+
 .tocify-extend-page {
   height: 0 !important;
 }
+
+.flex-container {
+   display: flex;
+  justify-content: center;
+  background-color: #2A9FD6;
+}
+
+
+.flex-containerPieC {
+   display: flex;
+  justify-content: center;
+}
+
+.flex-containerPieC > div {
+  width: 400px;
+  text-align: center;
+ 
+
+}
+
+.flex-container > div {
+  width: 280px;
+  margin: 30px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+
 
 hr {
   -webkit-box-sizing: content-box;

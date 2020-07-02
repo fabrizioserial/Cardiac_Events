@@ -45,9 +45,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 <h3 style="margin-top:10px">Gender distribution </h3> 
+
+<div  class="flex-containerPieC">
+
 <div style="margin-top: 10px; margin-bottom:10px" >
 
-```{r GeneroPorEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
+```{r GeneroPorEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(6,5)}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
 library(plotrix)
@@ -66,9 +69,9 @@ legend(1.2,0.6,c("Female", "Male"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
 
 </div>
 
-<h3 style="margin-top:20px; margin-bottom:10px">Cardiac Event by gender</h3>
+<div style="margin-top: 10px; margin-bottom:10px">
 
-```{r GeneroSinEvento, echo=FALSE,message=FALSE,warning=FALSE, fig.dim=c(10,5)}
+```{r GeneroSinEvento, echo=FALSE,message=FALSE,warning=FALSE, fig.dim=c(6,5)}
 library(readxl)
 dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
 library(plotrix)
@@ -85,7 +88,209 @@ legend(1.2,0.6,c("Female", "Male"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
 ```
 
 </div>
+</div>
 
+</div>
+
+
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
+  <h2>Diabetics</h2>
+</div>
+
+<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+
+<h5>Diabetes is strongly related to heart diseases. Adults with diabetes are two to three times more likely to have a cardiovascular disease than people without diabetes even when glucose levels are under control. People with diabetes are more probable to have other conditions that contribute to the risk of developing cardiovascular disease (hypertension, high cholesterol and triglycerides or obesity). This supports the results in which 11% of the people in the dataset is diabetic, but 28% of people who suffered a cardiac event is diabetic.</h5>
+
+<h3 style="margin-top:10px">Diabetics distribution</h3>
+
+<div  class="flex-containerPieC">
+
+
+<div style="margin-top: 10px; margin-bottom:10px" >
+
+```{r DiabeticosAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(6,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+Diabetic <-as.numeric(nrow(subset(dataset, dataset$DBT == 1)))
+NonDiabetic <- as.numeric(nrow(subset(dataset, dataset$DBT == 0)))
+
+DPercentage <- round((Diabetic * 100) / (Diabetic + NonDiabetic))
+NPercentage <- round((NonDiabetic * 100) / (Diabetic + NonDiabetic))
+par(mar=c(3,0,3,0))
+pie(c(DPercentage,NPercentage),main = "Diabetic Percentage", labels = c(paste(DPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
+legend(1.05,0.6,c("Diabetic", "Non diabetic"),fill = c("#F4A236","#2A9FD6"),cex = 0.82)
+
+
+
+```
+
+
+</div>
+
+<div style="margin-top: 10px; margin-bottom:10px" >
+
+```{r DiabeticosAnalysisEvent, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(6,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+Diab <- subset(dataset, dataset$Evento == 1, select = c(DBT))
+Diabetic <-as.numeric(nrow(subset(Diab, Diab$DBT == 1)))
+NonDiabetic <- as.numeric(nrow(subset(Diab, Diab$DBT == 0)))
+
+DPercentage <- round((Diabetic * 100) / (Diabetic + NonDiabetic))
+NPercentage <- round((NonDiabetic * 100) / (Diabetic + NonDiabetic))
+par(mar=c(3,0,3,0))
+pie(c(DPercentage,NPercentage),main = "Cardiac Events by Diabetic or Non-diabetic", labels = c(paste(DPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
+legend(1.05,0.6,c("Event", "Not event"),fill = c("#F4A236","#2A9FD6"),cex = 0.85)
+
+```
+
+
+</div>
+</div>
+
+</div>
+
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
+  <h2>Smoking</h2>
+</div>
+
+<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+
+<h5>Smoking cigarettes is a major risk factor for heart disease according to an article by  <a href="https://www.nhlbi.nih.gov/health-topics/smoking-and-your-heart">the National Heart, Lung and Blood Institute (U.S).</a> Smoking increases the probability of plaque buildup inside coronary arteries, which may lead to clogs, blood clots, heart disease, heart failure or a heart attack.</h5>
+
+<div  class="flex-containerPieC">
+
+<div style="margin-top: 10px; margin-bottom:10px" >
+
+```{r SmokeAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(6,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+Smoker <-as.numeric(nrow(subset(dataset, dataset$TBQ == 1)))
+NonSmoker <- as.numeric(nrow(subset(dataset, dataset$TBQ == 0)))
+
+SPercentage <- round((Smoker * 100) / (Smoker + NonSmoker))
+NPercentage <- round((NonSmoker * 100) / (Smoker + NonSmoker))
+par(mar=c(3,0,3,0))
+pie(c(SPercentage,NPercentage),main = "Smoker Percentage", labels = c(paste(SPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
+legend(1.05,0.6,c("Smoker", "Non smoker"),fill = c("#F4A236","#2A9FD6"),cex = 0.82)
+
+
+
+```
+
+</div>
+
+
+<div style="margin-top: 10px; margin-bottom:10px" >
+
+```{r SmokeEventAnalysisEvent, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(6,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+TBQ <- subset(dataset, dataset$TBQ == 1, select = c(Evento))
+Smoker <-as.numeric(nrow(subset(TBQ, TBQ$Evento == 1)))
+NonSmoker <- as.numeric(nrow(subset(TBQ, TBQ$Evento == 0)))
+
+SPercentage <- round((Smoker * 100) / (Smoker + NonSmoker))
+NPercentage <- round((NonSmoker * 100) / (Smoker + NonSmoker))
+par(mar=c(3,0,3,0))
+pie(c(SPercentage,NPercentage),main = "Smokers with Cardiac Events", labels = c(paste(SPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
+legend(1.05,0.6,c("Event", "Not event"),fill = c("#F4A236","#2A9FD6"),cex = 0.85)
+
+
+```
+
+
+</div>
+</div>
+</div>
+
+
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
+  <h2>Family history</h2>
+</div>
+
+<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
+
+<h5>If a patient has a family member who had a registered cardiac event, his risk of having one is even higher. According to an article written by the <a href="https://www.heart.org/en/health-topics/consumer-healthcare/what-is-cardiovascular-disease/family-history-and-heart-disease-stroke "> American Heart Association</a>, family history is an eminent factor to foresee a possible cardiovascular event.
+</h5>
+
+<div  class="flex-containerPieC">
+
+<div >
+
+```{r AHFAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(6,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+Antecedentes <-as.numeric(nrow(subset(dataset, dataset$AHF == 1)))
+SinAntecedentes <- as.numeric(nrow(subset(dataset, dataset$AHF == 0)))
+
+APercentage <- round((Antecedentes * 100) / (Antecedentes + SinAntecedentes))
+NPercentage <- round((SinAntecedentes * 100) / (Antecedentes + SinAntecedentes))
+par(mar=c(3,0,3,0))
+pie(c(SPercentage,NPercentage),main = "Family History Percentage", labels = c(paste(SPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
+legend(1.05,0.6,c("With FH", "Without FH"),fill = c("#F4A236","#2A9FD6"),cex = 0.85)
+
+```
+
+</div>
+<div>
+
+```{r AHFAnalysis2, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(6,5)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+AHF <- subset(dataset, dataset$AHF == 1, select = c(Evento))
+Antecedentes <-as.numeric(nrow(subset(AHF, AHF$Evento == 1)))
+SinAntecedentes <- as.numeric(nrow(subset(AHF, AHF$Evento == 0)))
+
+SPercentage <- round((Antecedentes * 100) / (Antecedentes + SinAntecedentes))
+NPercentage <- round((SinAntecedentes * 100) / (Antecedentes + SinAntecedentes))
+par(mar=c(3,0,3,0))
+pie(c(SPercentage,NPercentage),main = "People with Family History and Cardiac Events", labels = c(paste(SPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
+legend(1.1,0.6,c("Event", "Not event"),fill = c("#F4A236","#2A9FD6"),cex = 0.85)
+
+```
+</div>
+</div>
+</div>
+
+<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
+
+<h2>Associated symptoms</h2>
+
+</div>
+
+<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
+
+
+```{r SintomasAsociadosConEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
+library(readxl)
+dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
+library(plotrix)
+
+
+SintomasEvento <-as.numeric( nrow(subset(dataset, dataset$SA == 1 & dataset$Evento == 1)))
+SintomasSinEvento <- as.numeric(nrow(subset(dataset, dataset$SA == 0 & dataset$Evento == 1)))
+cantTotalGen <- SintomasEvento + SintomasSinEvento
+
+SAPPercentage <- round((SintomasEvento * 100) / (SintomasEvento + SintomasSinEvento))
+SASINPPercentage <- round((SintomasSinEvento * 100) / (SintomasEvento + SintomasSinEvento))
+par(mar=c(3,0,3,0))
+pie(c(SAPPercentage,SASINPPercentage),main = "Cardiac Events by associated symptoms", labels = c(paste(SAPPercentage,"%"),paste(SASINPPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1, radius = 1)
+
+legend(1.2,0.6,c("With associated symptoms", "Without associated symptoms"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
+```
+<h5 style="margin-top:15px">This graph shows relevant information, containing the distribution of patients who had a cardiac event and presented associated symptoms at the time of arrival on the hospital. As we can see, 54% of people who had a cardiac event presented associated symptoms, so this means that more than half of people that present associated symptoms are likely to suffer a cardiac event..</h5>
+</div>
 
 <div class="alert alert-dismissible alert-primary">
 
@@ -154,200 +359,6 @@ kableExtra::kable(tablaDeEdad,"html") %>%
 
 </div>
 
-<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
-  <h2>Diabetics</h2>
-</div>
-
-<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
-
-<h5>Diabetes is strongly related to heart diseases. Adults with diabetes are two to three times more likely to have a cardiovascular disease than people without diabetes even when glucose levels are under control. People with diabetes are more probable to have other conditions that contribute to the risk of developing cardiovascular disease (hypertension, high cholesterol and triglycerides or obesity). This supports the results in which 11% of the people in the dataset is diabetic, but 28% of people who suffered a cardiac event is diabetic.</h5>
-
-<h3 style="margin-top:10px">Diabetics distribution</h3> 
-<div style="margin-top: 10px; margin-bottom:10px" >
-
-```{r DiabeticosAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(plotrix)
-
-Diabetic <-as.numeric(nrow(subset(dataset, dataset$DBT == 1)))
-NonDiabetic <- as.numeric(nrow(subset(dataset, dataset$DBT == 0)))
-
-DPercentage <- round((Diabetic * 100) / (Diabetic + NonDiabetic))
-NPercentage <- round((NonDiabetic * 100) / (Diabetic + NonDiabetic))
-par(mar=c(3,0,3,0))
-pie(c(DPercentage,NPercentage),main = "Diabetic Percentage", labels = c(paste(DPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
-legend(1.2,0.6,c("Diabetic", "Non diabetic"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
-
-
-
-```
-
-
-</div>
-</div>
-
-<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
-
-<h3 style="margin-top:10px">Diabetic with cardiac events</h3> 
-<div style="margin-top: 10px; margin-bottom:10px" >
-
-```{r DiabeticosAnalysisEvent, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(plotrix)
-
-Diab <- subset(dataset, dataset$Evento == 1, select = c(DBT))
-Diabetic <-as.numeric(nrow(subset(Diab, Diab$DBT == 1)))
-NonDiabetic <- as.numeric(nrow(subset(Diab, Diab$DBT == 0)))
-
-DPercentage <- round((Diabetic * 100) / (Diabetic + NonDiabetic))
-NPercentage <- round((NonDiabetic * 100) / (Diabetic + NonDiabetic))
-par(mar=c(3,0,3,0))
-pie(c(DPercentage,NPercentage),main = "Cardiac Events by Diabetic or Non-diabetic", labels = c(paste(DPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
-legend(1.2,0.6,c("Is diabetic", "Isn't diabetic"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
-
-```
-
-
-</div>
-</div>
-
-<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
-  <h2>Smoking</h2>
-</div>
-
-<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
-
-<h5>Smoking cigarettes is a major risk factor for heart disease according to an article by  <a href="https://www.nhlbi.nih.gov/health-topics/smoking-and-your-heart">the National Heart, Lung and Blood Institute (U.S).</a> Smoking increases the probability of plaque buildup inside coronary arteries, which may lead to clogs, blood clots, heart disease, heart failure or a heart attack.</h5>
-
-<h3 style="margin-top:10px">Smoking distribution</h3> 
-<div style="margin-top: 10px; margin-bottom:10px" >
-
-```{r SmokeAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(plotrix)
-
-Smoker <-as.numeric(nrow(subset(dataset, dataset$TBQ == 1)))
-NonSmoker <- as.numeric(nrow(subset(dataset, dataset$TBQ == 0)))
-
-SPercentage <- round((Smoker * 100) / (Smoker + NonSmoker))
-NPercentage <- round((NonSmoker * 100) / (Smoker + NonSmoker))
-par(mar=c(3,0,3,0))
-pie(c(SPercentage,NPercentage),main = "Smoker Percentage", labels = c(paste(SPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
-legend(1.2,0.6,c("Smoker", "Non smoker"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
-
-
-
-```
-
-</div>
-</div>
-
-<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
-
-<h3 style="margin-top:10px">Smokers with cardiac event</h3> 
-<div style="margin-top: 10px; margin-bottom:10px" >
-
-```{r SmokeEventAnalysisEvent, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(plotrix)
-
-TBQ <- subset(dataset, dataset$TBQ == 1, select = c(Evento))
-Smoker <-as.numeric(nrow(subset(TBQ, TBQ$Evento == 1)))
-NonSmoker <- as.numeric(nrow(subset(TBQ, TBQ$Evento == 0)))
-
-SPercentage <- round((Smoker * 100) / (Smoker + NonSmoker))
-NPercentage <- round((NonSmoker * 100) / (Smoker + NonSmoker))
-par(mar=c(3,0,3,0))
-pie(c(SPercentage,NPercentage),main = "Smokers with Cardiac Events", labels = c(paste(SPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
-legend(1.2,0.6,c("Suffers event", "Doesn't suffer event"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
-
-
-```
-
-
-</div>
-</div>
-
-
-<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px; margin-top:20px">
-  <h2>Family history</h2>
-</div>
-
-<div style="padding-top: 5px; padding-right: 15px; padding-bottom: 60px; padding-left: 15px">
-
-<h5>If a patient has a family member who had a registered cardiac event, his risk of having one is even higher. According to an article written by the <a href="https://www.heart.org/en/health-topics/consumer-healthcare/what-is-cardiovascular-disease/family-history-and-heart-disease-stroke "> American Heart Association</a>, family history is an eminent factor to foresee a possible cardiovascular event.
-</h5>
-
-<h3 style="margin-top:10px">Family history distribution</h3> 
-<div style="margin-top: 10px; margin-bottom:10px" >
-
-```{r AHFAnalysis, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(plotrix)
-Antecedentes <-as.numeric(nrow(subset(dataset, dataset$AHF == 1)))
-SinAntecedentes <- as.numeric(nrow(subset(dataset, dataset$AHF == 0)))
-
-APercentage <- round((Antecedentes * 100) / (Antecedentes + SinAntecedentes))
-NPercentage <- round((SinAntecedentes * 100) / (Antecedentes + SinAntecedentes))
-par(mar=c(3,0,3,0))
-pie(c(SPercentage,NPercentage),main = "Family History Percentage", labels = c(paste(SPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
-legend(1.2,0.6,c("With family history", "Without family history"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
-
-```
-
-<h3 style="margin-top:20px; margin-bottom:15px">Family history with event cardiac</h3>
-
-```{r AHFAnalysis2, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(plotrix)
-AHF <- subset(dataset, dataset$AHF == 1, select = c(Evento))
-Antecedentes <-as.numeric(nrow(subset(AHF, AHF$Evento == 1)))
-SinAntecedentes <- as.numeric(nrow(subset(AHF, AHF$Evento == 0)))
-
-SPercentage <- round((Antecedentes * 100) / (Antecedentes + SinAntecedentes))
-NPercentage <- round((SinAntecedentes * 100) / (Antecedentes + SinAntecedentes))
-par(mar=c(3,0,3,0))
-pie(c(SPercentage,NPercentage),main = "People with Family History and Cardiac Events", labels = c(paste(SPercentage,"%"),paste(NPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1,init.angle=25 , radius = 1)
-legend(1.2,0.6,c("Suffers event", "Doesn't suffer event"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
-
-```
-</div>
-</div>
-
-<div class="alert alert-dismissible alert-primary" style=" padding-left: 15px">
-
-<h2>Associated symptoms</h2>
-
-</div>
-
-<div style="padding-top: 20px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px">
-
-
-```{r SintomasAsociadosConEvento, echo=FALSE,message=FALSE,warning=FALSE,fig.dim=c(10,4)}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(plotrix)
-
-
-SintomasEvento <-as.numeric( nrow(subset(dataset, dataset$SA == 1 & dataset$Evento == 1)))
-SintomasSinEvento <- as.numeric(nrow(subset(dataset, dataset$SA == 0 & dataset$Evento == 1)))
-cantTotalGen <- SintomasEvento + SintomasSinEvento
-
-SAPPercentage <- round((SintomasEvento * 100) / (SintomasEvento + SintomasSinEvento))
-SASINPPercentage <- round((SintomasSinEvento * 100) / (SintomasEvento + SintomasSinEvento))
-par(mar=c(3,0,3,0))
-pie(c(SAPPercentage,SASINPPercentage),main = "Cardiac Events by associated symptoms", labels = c(paste(SAPPercentage,"%"),paste(SASINPPercentage,"%")),col = c("#F4A236","#2A9FD6"),cex = 1, radius = 1)
-
-legend(1.2,0.6,c("With associated symptoms", "Without associated symptoms"),fill = c("#F4A236","#2A9FD6"),cex = 0.8)
-```
-<h5 style="margin-top:15px">This graph shows relevant information, containing the distribution of patients who had a cardiac event and presented associated symptoms at the time of arrival on the hospital. As we can see, 54% of people who had a cardiac event presented associated symptoms, so this means that more than half of people that present associated symptoms are likely to suffer a cardiac event..</h5>
-</div>
 
 <div class="alert alert-dismissible alert-warning" style="margin-top:100px; margin-bottom:10px">
 
@@ -549,30 +560,6 @@ barplot(Frequency, col=rev(heat.colors(length(table(legends)))), legend.text=leg
 
 ```
 
-<h3 style="margin-top:50px; margin-bottom:10px">Opressive</h3>
-
-```{r Interpretacion_dolorOpresivo, echo=FALSE,message=FALSE,warning=FALSE,results='hide',fig.dim=c(8,5)}
-library(readxl)
-dataset <- read_excel("C:/Users/fabri/Downloads/dataset.xlsx")
-library(plotrix)
-
-percent <- function(all , percentToCalculate){
-  (percentToCalculate*100)/all
-}
-
-pplOpressive <- subset(dataset,dataset$CD==-1&dataset$Evento==1)
-less1Min <- round(percent(nrow(pplOpressive),nrow(subset(pplOpressive,pplOpressive$DD==-1))))
-mor20Min <- round(percent(nrow(pplOpressive),nrow(subset(pplOpressive,pplOpressive$DD==0))))
-Oneto20 <- round(percent(nrow(pplOpressive),nrow(subset(pplOpressive,pplOpressive$DD==1)))) 
-
-
-par(mar=c(3,0,3,0))
-pie(c(less1Min,mor20Min,Oneto20),main = "Duration Of pain until event on opressive type of pain", labels = c(paste("  ",less1Min,"%"),paste(mor20Min,"%"),paste(Oneto20,"%")),col = c("#DA4531","#2A9FD6","#F4A236"),cex = 1, radius = 1)
-
-legend(1.2,0.9,c("More than 20 min"," 1 to 20 min","Less than 1 min"),fill = c("#2A9FD6","#F4A236","#DA4531"),cex = 0.8)
-
-
-```
 
 </div>
 
@@ -641,11 +628,65 @@ pie(percentages, labels = lbls, col = c("#2A9FD6", "#F4A236"), main = "Percentag
 
 </div>
 
-<div style="margin-top:120px; margin-bottom:20px">
-<div class="alert alert-dismissible alert-primary" style="padding-left: 15px; margin-bottom:10px; margin-top:60px">
-<p style="text-align:center; font-size: 40px">TEAM</p>
+<div class="alert alert-dismissible alert-warning" style="margin-top:100px; margin-bottom:10px">
+
+<h1>Predictor</h1>
+
+<h5>In this section we look for match metadatas and found new data from them</h5>
 </div>
-<img src="team_CardiacEvent.png" alt="Team">
+
+<div style="   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;">
+<img src="mau_graph.png"></img>
+</div>
+
+
+
+<h2>Confusion table</h2>
+
+
+<div>
+<table>
+  <tr>
+    <th> </th>
+    <th>Real value 0</th>
+    <th>Real value 1</th>
+  </tr>
+  <tr>
+    <td>Predict value 0</td>
+    <td>186</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>Predict value 1</td>
+    <td>34</td>
+    <td>15</td>
+  </tr>
+
+</table>
+</div>
+
+<div style="margin-top:120px; margin-bottom:20px">
+<div class="alert alert-dismissible alert-primary" style="padding-left: 15px;padding-right: 15px; margin-bottom:10px; margin-top:60px">
+<p style="text-align:center; font-size: 40px">
+TEAM
+</p>
+</div>
+
+<div  class="flex-container">
+<div><a href="mailto:fabrizio.serial@ing.austral.edu.ar"><img src="fabro_pht.png" alt="Click for mail"></a></div>
+<div><a href="mailto:agustin.von@ing.austral.edu.ar"><img src="von_pht.png" alt="Click for mail"></a></div>
+</div>
+
+<div  class="flex-container">
+<div><a href="mailto:mauro.kinderknecht@ing.austral.edu.ar"><img src="mauro_pht.png" alt="Click for mail"></a></div>
+<div><a href="mailto:juan.sorondo@ing.austral.edu.ar"><img src="juampi_pht.png" alt="Click for mail"></a></div>
+</div>
+
+
+
 </div>
 
 
